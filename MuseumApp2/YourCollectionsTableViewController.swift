@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuthUI
 
 class YourCollectionsTableViewController: UITableViewController {
 
+    
+    @IBAction func signOutPressed(_ sender: Any) {
+        do { try Auth.auth().signOut() } catch { print(error) }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

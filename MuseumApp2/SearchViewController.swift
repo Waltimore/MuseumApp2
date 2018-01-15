@@ -16,26 +16,32 @@ class SearchViewController: UIViewController {
         //updateUI()
         // Do any additional setup after loading the view.
         retrieve()
+    }
+    @IBAction func searchPressed(_ sender: Any) {
         updateUI()
     }
     
-    var artWork: ArtWork!
+    var artWork: Label!
     
     func retrieve() {
         let url = URL(string:"https://www.rijksmuseum.nl/api/en/collection/SK-A-4691?key=9A0wAsBM&format=json")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
-            print(data!)
             print(error as Any)
-            if let data = data,
-                let artWork = try? jsonDecoder.decode(ArtWork.self, from: data) {
+            do {
+                if let data = data {
+                let artWork = try jsonDecoder.decode(Json4Swift_Base.self, from: data)
                 print(artWork)
-                self.artWork = artWork
+                self.artWork = artWork.artObject?.label
+//                print(self.artWork as Any)
+            }
+            } catch {
+                print(error)
             }
         }
         task.resume()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -44,7 +50,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchResultLabel: UILabel!
     
     func updateUI() {
-        //searchResultLabel.text = artWork.title
+        searchResultLabel.text = self.artWork?.title as! String
     }
     
     /*
