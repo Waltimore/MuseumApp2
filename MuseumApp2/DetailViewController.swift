@@ -12,13 +12,43 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        updateUI()
         // Do any additional setup after loading the view.
     }
 
+    @IBOutlet weak var artImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var artWork: Label!
+    var imageURL: String!
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateUI() {
+        nameLabel.text = artWork.title
+        artistLabel.text = artWork.makerLine
+        descriptionLabel.text = artWork.description
+        load_image(urlString: imageURL)
+    }
+    
+    func load_image(urlString:String)
+    {
+        
+        var imgURL: NSURL = NSURL(string: urlString)!
+        let request: NSURLRequest = NSURLRequest(url: imgURL as URL)
+        NSURLConnection.sendAsynchronousRequest(
+            request as URLRequest, queue: OperationQueue.main,
+            completionHandler: {(response: URLResponse?,data: Data?,error: Error?) -> Void in
+                if error == nil {
+                    self.artImage.image = UIImage(data: data!)
+                }
+        })
+        
     }
     
 

@@ -13,20 +13,20 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct WebImage : Codable {
-	let guid : String?
-	let offsetPercentageX : Int?
-	let offsetPercentageY : Int?
-	let width : Int?
-	let height : Int?
+//    let guid : String?
+//    let offsetPercentageX : Int?
+//    let offsetPercentageY : Int?
+//    let width : Int?
+//    let height : Int?
 	let url : String?
 
 	enum CodingKeys: String, CodingKey {
 
-		case guid = "guid"
-		case offsetPercentageX = "offsetPercentageX"
-		case offsetPercentageY = "offsetPercentageY"
-		case width = "width"
-		case height = "height"
+//        case guid = "guid"
+//        case offsetPercentageX = "offsetPercentageX"
+//        case offsetPercentageY = "offsetPercentageY"
+//        case width = "width"
+//        case height = "height"
 		case url = "url"
 	}
 

@@ -16,11 +16,11 @@ struct ArtObject : Codable {
 	//let links : Links?
 	//let id : String?
 	//let priref : String?
-	//let objectNumber : String?
+	let objectNumber : String?
 	//let language : String?
-	//let title : String?
+	let title : String?
 	//let copyrightHolder : String?
-	//let webImage : WebImage?
+	let webImage : WebImage?
 	//let colors : [String]?
 	//let colorsWithNormalization : [String]?
 //    let normalizedColors : [String]?
@@ -65,11 +65,11 @@ struct ArtObject : Codable {
 //        case links
 //        case id = "id"
 //        case priref = "priref"
-//        case objectNumber = "objectNumber"
+        case objectNumber = "objectNumber"
 //        case language = "language"
-//        case title = "title"
+        case title = "title"
 //        case copyrightHolder = "copyrightHolder"
-//        case webImage
+        case webImage
 //        case colors = "colors"
 //        case colorsWithNormalization = "colorsWithNormalization"
 //        case normalizedColors = "normalizedColors"

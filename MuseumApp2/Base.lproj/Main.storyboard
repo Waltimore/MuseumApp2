@@ -349,7 +349,6 @@
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchPressed:" destination="IwP-7p-WsS" eventType="touchUpInside" id="WJ8-AH-tjf"/>
-                                    <segue destination="w70-dw-Mqc" kind="show" identifier="SearchSegue" id="vxI-FH-qwe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E2-4j-oMl">
@@ -366,6 +365,8 @@
                     <navigationItem key="navigationItem" id="MOW-zy-Xc3"/>
                     <connections>
                         <outlet property="searchResultLabel" destination="0E2-4j-oMl" id="3Ha-Xu-3oz"/>
+                        <outlet property="searchTextField" destination="aeA-hR-3VW" id="HtW-dJ-jp9"/>
+                        <segue destination="w70-dw-Mqc" kind="show" identifier="searchSegue" id="B18-E3-eXt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSK-OG-PlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -388,7 +389,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Artwork" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9T-cZ-xus">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9T-cZ-xus">
                                             <rect key="frame" x="16" y="11" width="327" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="IYq-x6-a06"/>
@@ -397,26 +398,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pb1-Wa-L2Y">
-                                            <rect key="frame" x="16" y="38" width="327" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="f9T-cZ-xus" firstAttribute="leading" secondItem="OyA-Ne-vbX" secondAttribute="leadingMargin" id="0Pe-cF-URO"/>
-                                        <constraint firstItem="f9T-cZ-xus" firstAttribute="leading" secondItem="pb1-Wa-L2Y" secondAttribute="leading" id="5Uc-pM-Buh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="f9T-cZ-xus" secondAttribute="trailing" constant="16" id="Uzz-wS-VzT"/>
-                                        <constraint firstItem="f9T-cZ-xus" firstAttribute="trailing" secondItem="pb1-Wa-L2Y" secondAttribute="trailing" id="osl-3K-Bla"/>
-                                        <constraint firstItem="pb1-Wa-L2Y" firstAttribute="bottom" secondItem="OyA-Ne-vbX" secondAttribute="bottomMargin" id="qNy-HL-lep"/>
-                                        <constraint firstItem="pb1-Wa-L2Y" firstAttribute="top" secondItem="f9T-cZ-xus" secondAttribute="bottom" constant="6" id="vQE-KR-bJc"/>
                                         <constraint firstItem="f9T-cZ-xus" firstAttribute="top" secondItem="OyA-Ne-vbX" secondAttribute="topMargin" id="waI-U6-9In"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="nvx-Wf-Myn" kind="show" identifier="SearchDetailSegue" id="WfH-fk-v0i"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -424,6 +412,9 @@
                             <outlet property="delegate" destination="w70-dw-Mqc" id="llk-Z2-2Ha"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="nvx-Wf-Myn" kind="show" identifier="DetailSegue" id="jUc-Rx-MxM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emc-RQ-zuW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -488,13 +479,6 @@
                                 <rect key="frame" x="16" y="85" width="343" height="228"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Info of artwork" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lY6-MO-s3R">
-                                <rect key="frame" x="16" y="321" width="343" height="202"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uej-kL-HzL">
                                 <rect key="frame" x="16" y="568" width="95" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -507,10 +491,37 @@
                                 <color key="backgroundColor" red="0.99942404029999998" green="0.86506457849999996" blue="0.44372597130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Add to Collection"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name artwork" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm9-JU-SeG">
+                                <rect key="frame" x="16" y="323" width="343" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duz-3O-ZLv">
+                                <rect key="frame" x="16" y="382" width="343" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmt-do-ZPM">
+                                <rect key="frame" x="16" y="421" width="343" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gwE-Ll-dXU"/>
                     </view>
+                    <connections>
+                        <outlet property="artImage" destination="7KI-1R-yYQ" id="g6U-wc-Wem"/>
+                        <outlet property="artistLabel" destination="duz-3O-ZLv" id="rO4-go-2pS"/>
+                        <outlet property="descriptionLabel" destination="Fmt-do-ZPM" id="Qc6-rL-6hn"/>
+                        <outlet property="nameLabel" destination="Lm9-JU-SeG" id="X2I-1O-odj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCS-mC-SH4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -518,7 +529,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HPR-TJ-DDi"/>
+        <segue reference="jUc-Rx-MxM"/>
         <segue reference="5Yp-SE-pZj"/>
     </inferredMetricsTieBreakers>
 </document>

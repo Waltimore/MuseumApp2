@@ -15,31 +15,54 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         //updateUI()
         // Do any additional setup after loading the view.
-        retrieve()
+
     }
     @IBAction func searchPressed(_ sender: Any) {
-        updateUI()
+        var userSearchInput = searchTextField.text
+        var searchURL = Search(query: userSearchInput!)
+        retrieve(urlString: searchURL)
+
     }
     
+    @IBOutlet weak var searchTextField: UITextField!
     var artWork: Label!
+    var imageURL: String?
+    var searchResults: [ArtObjects]!
     
-    func retrieve() {
-        let url = URL(string:"https://www.rijksmuseum.nl/api/en/collection/SK-A-4691?key=9A0wAsBM&format=json")!
+    func retrieve(urlString: String) {
+        let url = URL(string:urlString)!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
-            print(error as Any)
+            //print(error as Any)
             do {
                 if let data = data {
-                let artWork = try jsonDecoder.decode(Json4Swift_Base.self, from: data)
-                print(artWork)
-                self.artWork = artWork.artObject?.label
-//                print(self.artWork as Any)
-            }
+                let artWorks = try jsonDecoder.decode(SearchResults.self, from: data)
+                    //print(artWorks)
+                    self.searchResults = artWorks.artObjects
+                    //print(self.searchResults)
+                }
             } catch {
                 print(error)
             }
         }
         task.resume()
+        if searchResults != nil {
+            performSegue(withIdentifier: "searchSegue", sender: Any?.self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "searchSegue" {
+            let searchResultTableViewController = segue.destination as! SearchResultTableViewController
+            searchResultTableViewController.searchResults = searchResults
+        }
+    }
+    
+    
+    
+    func Search(query: String) -> String {
+    var searchURL = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=9A0wAsBM&format=json"
+        return searchURL
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,7 +73,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchResultLabel: UILabel!
     
     func updateUI() {
-        searchResultLabel.text = self.artWork?.title as! String
+        searchResultLabel.text = (self.artWork?.title as! String)
     }
     
     /*

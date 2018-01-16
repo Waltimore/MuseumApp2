@@ -19,6 +19,8 @@
 		9A86ED11200CE577004AC7DC /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ECFD200CE426004AC7DC /* Links.swift */; };
 		9A86ED13200CE579004AC7DC /* ArtObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED12200CE578004AC7DC /* ArtObject.swift */; };
 		9A86ED14200CE57B004AC7DC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED00200CE44B004AC7DC /* Label.swift */; };
+		9A86ED1B200DFC76004AC7DC /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED18200DFC75004AC7DC /* SearchResults.swift */; };
+		9A86ED1C200DFC76004AC7DC /* ArtObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED19200DFC76004AC7DC /* ArtObjects.swift */; };
 		9A8D04D4200CB03300B8B12C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */; };
 		9AE0AEFD200CB57E00B30137 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0AEFC200CB57E00B30137 /* LoginViewController.swift */; };
 		9AED4FCB2004B4C400A1556D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FCA2004B4C400A1556D /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 		9A86ED06200CE505004AC7DC /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
 		9A86ED07200CE512004AC7DC /* Acquisition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acquisition.swift; sourceTree = "<group>"; };
 		9A86ED12200CE578004AC7DC /* ArtObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObject.swift; sourceTree = "<group>"; };
+		9A86ED18200DFC75004AC7DC /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResults.swift; path = ../../../../Downloads/codegen_5a5dc4b29bcd5/SearchResults.swift; sourceTree = "<group>"; };
+		9A86ED19200DFC76004AC7DC /* ArtObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtObjects.swift; path = ../../../../Downloads/codegen_5a5dc4b29bcd5/ArtObjects.swift; sourceTree = "<group>"; };
 		9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AE0AEFC200CB57E00B30137 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9AED4FC72004B4C400A1556D /* MuseumApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +112,8 @@
 				9AED4FCA2004B4C400A1556D /* AppDelegate.swift */,
 				9A86ED00200CE44B004AC7DC /* Label.swift */,
 				9A86ED12200CE578004AC7DC /* ArtObject.swift */,
+				9A86ED19200DFC76004AC7DC /* ArtObjects.swift */,
+				9A86ED18200DFC75004AC7DC /* SearchResults.swift */,
 				9A86ECFD200CE426004AC7DC /* Links.swift */,
 				9A86ECFC200CE423004AC7DC /* WebImage.swift */,
 				9A86ED02200CE4C8004AC7DC /* ArtObjectPage.swift */,
@@ -286,6 +292,8 @@
 				9A86ED0F200CE572004AC7DC /* Acquisition.swift in Sources */,
 				9A86ED13200CE579004AC7DC /* ArtObject.swift in Sources */,
 				9AED4FE92008AC3800A1556D /* CollectionDetailTableViewController.swift in Sources */,
+				9A86ED1B200DFC76004AC7DC /* SearchResults.swift in Sources */,
+				9A86ED1C200DFC76004AC7DC /* ArtObjects.swift in Sources */,
 				9A86ED0C200CE56A004AC7DC /* Dimensions.swift in Sources */,
 				9AED4FE32008AB8700A1556D /* RecentUsersTableViewController.swift in Sources */,
 				9AED4FDF2004BBE100A1556D /* SearchResultTableViewController.swift in Sources */,
