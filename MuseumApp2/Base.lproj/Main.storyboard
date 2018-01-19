@@ -60,7 +60,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.557592007" blue="0.59731795389999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.30116056157434723" green="0.82702663647926933" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="hMW-gF-Mkc"/>
                     </view>
                     <connections>
@@ -154,23 +154,10 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4cn-u9-vh0" id="xhh-59-0Ko">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qag-0v-LUf">
-                                            <rect key="frame" x="32" y="11" width="309" height="100"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="qag-0v-LUf" firstAttribute="leading" secondItem="xhh-59-0Ko" secondAttribute="leadingMargin" constant="16" id="BrV-x8-nHN"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="qag-0v-LUf" secondAttribute="trailing" constant="18" id="QQM-2f-Pxz"/>
-                                        <constraint firstItem="qag-0v-LUf" firstAttribute="top" secondItem="xhh-59-0Ko" secondAttribute="topMargin" id="Zaq-G1-s43"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="qag-0v-LUf" secondAttribute="bottom" constant="-7" id="cwn-bh-kmC"/>
-                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.8963807909" blue="0.77583885180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <segue destination="bxZ-X2-7pS" kind="show" identifier="UserCollectionsSegue" id="5Yp-SE-pZj"/>
+                                    <segue destination="nvx-Wf-Myn" kind="show" identifier="collection2detail" id="DH4-zp-rEG"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -183,7 +170,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="5Ke-aN-EIc">
                             <connections>
                                 <action selector="signOutPressed:" destination="hUV-TE-eZo" id="Dce-sZ-Oei"/>
-                                <segue destination="8VH-LP-zul" kind="unwind" unwindAction="unwindToLoginWithSegue:" id="EqZ-Os-Ck5"/>
+                                <segue destination="8VH-LP-zul" kind="unwind" identifier="logOut" unwindAction="unwindToLoginWithSegue:" id="EqZ-Os-Ck5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -351,20 +338,12 @@
                                     <action selector="searchPressed:" destination="IwP-7p-WsS" eventType="touchUpInside" id="WJ8-AH-tjf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E2-4j-oMl">
-                                <rect key="frame" x="42" y="353" width="291" height="230"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.62552640650000002" blue="0.6203403502" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.30116056159999999" green="0.82702663649999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="cZY-Hd-Brj"/>
                     </view>
                     <navigationItem key="navigationItem" id="MOW-zy-Xc3"/>
                     <connections>
-                        <outlet property="searchResultLabel" destination="0E2-4j-oMl" id="3Ha-Xu-3oz"/>
                         <outlet property="searchTextField" destination="aeA-hR-3VW" id="HtW-dJ-jp9"/>
                         <segue destination="w70-dw-Mqc" kind="show" identifier="searchSegue" id="B18-E3-eXt"/>
                     </connections>
@@ -405,6 +384,10 @@
                                         <constraint firstItem="f9T-cZ-xus" firstAttribute="top" secondItem="OyA-Ne-vbX" secondAttribute="topMargin" id="waI-U6-9In"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.89638079087203715" blue="0.77583885176779377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="nvx-Wf-Myn" kind="show" identifier="DetailSegue" id="8Ns-ZB-X4f"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -412,9 +395,6 @@
                             <outlet property="delegate" destination="w70-dw-Mqc" id="llk-Z2-2Ha"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="nvx-Wf-Myn" kind="show" identifier="DetailSegue" id="jUc-Rx-MxM"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emc-RQ-zuW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -429,11 +409,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CollectionDetailCell" rowHeight="127" id="XRa-8R-MyP">
-                                <rect key="frame" x="0.0" y="28" width="375" height="127"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CollectionDetailCell" rowHeight="83" id="XRa-8R-MyP">
+                                <rect key="frame" x="0.0" y="28" width="375" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XRa-8R-MyP" id="cJU-EP-8id">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="126.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name Artwork" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKP-R2-jnw">
@@ -444,7 +424,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRr-0o-Qg4">
-                                            <rect key="frame" x="16" y="74" width="343" height="21"/>
+                                            <rect key="frame" x="16" y="40" width="343" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -465,7 +445,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b91-MH-hpF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3336.8000000000002" y="82.3088455772114"/>
+            <point key="canvasLocation" x="3337" y="-318"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="bwt-2H-j0b">
@@ -490,6 +470,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99942404029999998" green="0.86506457849999996" blue="0.44372597130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Add to Collection"/>
+                                <connections>
+                                    <action selector="addPressed:" destination="nvx-Wf-Myn" eventType="touchUpInside" id="WJK-J4-6tH"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name artwork" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm9-JU-SeG">
                                 <rect key="frame" x="16" y="323" width="343" height="51"/>
@@ -513,7 +496,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.30116056159999999" green="0.82702663649999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="gwE-Ll-dXU"/>
                     </view>
                     <connections>
@@ -529,7 +512,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jUc-Rx-MxM"/>
-        <segue reference="5Yp-SE-pZj"/>
+        <segue reference="DH4-zp-rEG"/>
+        <segue reference="Hif-Qr-EYX"/>
     </inferredMetricsTieBreakers>
 </document>

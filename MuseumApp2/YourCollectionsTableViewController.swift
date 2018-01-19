@@ -12,19 +12,63 @@ import FirebaseAuthUI
 
 class YourCollectionsTableViewController: UITableViewController {
 
+    let ref = Database.database().reference(withPath: "gekkehenk@hotmail com").child("collection")
     
     @IBAction func signOutPressed(_ sender: Any) {
         do { try Auth.auth().signOut() } catch { print(error) }
+        if Auth.auth().currentUser != nil {
+            // User is signed in.
+            print("user is signed in")
+        } else {
+            print("not logged in")
+            performSegue(withIdentifier: "logOut", sender: Any?.self)
+            // No user is signed in.
+        }
     }
+    
+    var userCollection: [ArtObject] = []
+    
+    //var artWork: [Artwork]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        startObserving()        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "collection2detail" {
+            let detailViewController = segue.destination as! DetailViewController
+            //print(artWork)
+            var index = tableView.indexPathForSelectedRow!.row
+            detailViewController.artWork = self.userCollection[index]
+            //detailViewController.imageURL = imageURL            
+            //var artWorkSelected = searchResults[index]
+            //var selectedURL = artURL(objectnumber: artWorkSelected.objectNumber!)
+            //retrieve(urlString: selectedURL)
+        }
+    }
+    
+    func startObserving() {
+        //var collectionRef = ref.child("collection")
+        ref.observe(.value, with: { snapshot in
+        
+        var collectionArt: [ArtObject] = []
+        
+        print(snapshot.children)
+            
+        for item in snapshot.children {
+        let artWork = ArtObject(snapshot: item as! DataSnapshot)
+        collectionArt.append(artWork)
+        }
+        
+        self.userCollection = collectionArt
+        self.tableView.reloadData()
+        
+        })
+    }
+    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        let artTitle = self.userCollection[indexPath.row].title
+        cell.textLabel?.text = artTitle
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,17 +85,19 @@ class YourCollectionsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return userCollection.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "YourCollectionCell", for: indexPath)
 
-        // Configure the cell...
+        configure(cell: cell, forItemAt: indexPath)// Configure the cell...
 
         return cell
     }
+
+}
     
 
     /*
@@ -99,4 +145,5 @@ class YourCollectionsTableViewController: UITableViewController {
     }
     */
 
-}
+
+

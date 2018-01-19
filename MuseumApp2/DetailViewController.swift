@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class DetailViewController: UIViewController {
 
@@ -15,13 +16,24 @@ class DetailViewController: UIViewController {
         updateUI()
         // Do any additional setup after loading the view.
     }
+    
+    let userID = Auth.auth().currentUser?.email as! String
+    
+    @IBAction func addPressed(_ sender: Any) {
+            print(userID)
 
+        let ref = Database.database().reference(withPath: userID.makeFirebaseString())
+        let childRef = ref.child("collection")
+        let savedArtwork = childRef.child((artWork.title?.makeFirebaseString())!)
+        savedArtwork.setValue(artWork.toAnyObject())
+    }
+    
     @IBOutlet weak var artImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var artWork: Label!
+    var artWork: ArtObject!
     var imageURL: String!
     
     override func didReceiveMemoryWarning() {
@@ -30,10 +42,14 @@ class DetailViewController: UIViewController {
     }
     
     func updateUI() {
-        nameLabel.text = artWork.title
-        artistLabel.text = artWork.makerLine
-        descriptionLabel.text = artWork.description
-        load_image(urlString: imageURL)
+        if artWork != nil {
+            nameLabel.text = artWork.title
+            artistLabel.text = artWork.principalMaker
+            descriptionLabel.text = artWork.description
+            if imageURL != nil {
+                load_image(urlString: imageURL)
+            }
+        }
     }
     
     func load_image(urlString:String)
@@ -61,5 +77,5 @@ class DetailViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
+

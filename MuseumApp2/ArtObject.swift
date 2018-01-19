@@ -12,6 +12,8 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
+import Firebase
+
 struct ArtObject : Codable {
 	//let links : Links?
 	//let id : String?
@@ -26,7 +28,7 @@ struct ArtObject : Codable {
 //    let normalizedColors : [String]?
 //    let normalized32Colors : [String]?
 //    let titles : [String]?
-//    let description : String?
+    let description : String?
 //    let labelText : String?
 //    let objectTypes : [String]?
 //    let objectCollection : [String]?
@@ -34,7 +36,7 @@ struct ArtObject : Codable {
 //    let principalMakers : [PrincipalMakers]?
 //    let plaqueDescriptionDutch : String?
 //    let plaqueDescriptionEnglish : String?
-//    let principalMaker : String?
+    let principalMaker : String?
 //    let artistRole : String?
 //    let associations : [String]?
 //    let acquisition : Acquisition?
@@ -56,7 +58,7 @@ struct ArtObject : Codable {
 //    let longTitle : String?
 //    let subTitle : String?
 //    let scLabelLine : String?
-	let label : Label?
+//	let label : Label?
 //    let showImage : Bool?
 //    let location : String?
 
@@ -75,7 +77,7 @@ struct ArtObject : Codable {
 //        case normalizedColors = "normalizedColors"
 //        case normalized32Colors = "normalized32Colors"
 //        case titles = "titles"
-//        case description = "description"
+        case description = "description"
 //        case labelText = "labelText"
 //        case objectTypes = "objectTypes"
 //        case objectCollection = "objectCollection"
@@ -83,7 +85,7 @@ struct ArtObject : Codable {
 //        case principalMakers = "principalMakers"
 //        case plaqueDescriptionDutch = "plaqueDescriptionDutch"
 //        case plaqueDescriptionEnglish = "plaqueDescriptionEnglish"
-//        case principalMaker = "principalMaker"
+        case principalMaker = "principalMaker"
 //        case artistRole = "artistRole"
 //        case associations = "associations"
 //        case acquisition
@@ -105,7 +107,7 @@ struct ArtObject : Codable {
 //        case longTitle = "longTitle"
 //        case subTitle = "subTitle"
 //        case scLabelLine = "scLabelLine"
-		case label
+//		case label
 //        case showImage = "showImage"
 //        case location = "location"
 	}
@@ -159,5 +161,23 @@ struct ArtObject : Codable {
 //        showImage = try values.decodeIfPresent(Bool.self, forKey: .showImage)
 //        location = try values.decodeIfPresent(String.self, forKey: .location)
 //    }
+    func toAnyObject() -> Any {
+        return [
+            "title": title,
+            "description": description,
+            "objectNumber": objectNumber,
+            "webImage": "",
+            "principalMaker": principalMaker
+        ]
+    }
+    
+    init(snapshot: DataSnapshot) {
+        let snapshotValue = snapshot.value as! [String: AnyObject]
+        title = snapshotValue["title"] as! String
+        description = snapshotValue["description"] as! String
+        objectNumber = snapshotValue["objectNumber"] as! String
+        webImage = snapshotValue["webImage"] as? WebImage
+        principalMaker = snapshotValue["principalMaker"] as! String
+    }
 
 }

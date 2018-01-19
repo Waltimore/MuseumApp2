@@ -21,7 +21,6 @@ class SearchViewController: UIViewController {
         var userSearchInput = searchTextField.text
         var searchURL = Search(query: userSearchInput!)
         retrieve(urlString: searchURL)
-
     }
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -39,16 +38,14 @@ class SearchViewController: UIViewController {
                 let artWorks = try jsonDecoder.decode(SearchResults.self, from: data)
                     //print(artWorks)
                     self.searchResults = artWorks.artObjects
-                    //print(self.searchResults)
                 }
             } catch {
                 print(error)
             }
         }
         task.resume()
-        if searchResults != nil {
-            performSegue(withIdentifier: "searchSegue", sender: Any?.self)
-        }
+        self.performSegue(withIdentifier: "searchSegue", sender: Any?.self)
+        //print(self.searchResults)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,7 +58,7 @@ class SearchViewController: UIViewController {
     
     
     func Search(query: String) -> String {
-    var searchURL = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=9A0wAsBM&format=json"
+        var searchURL = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=9A0wAsBM&format=json"
         return searchURL
     }
 

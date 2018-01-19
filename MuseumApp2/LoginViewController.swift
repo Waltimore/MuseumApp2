@@ -15,12 +15,12 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passWordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     
     override func didReceiveMemoryWarning() {
@@ -39,11 +39,13 @@ class LoginViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             // User is signed in.
             print("user is signed in")
-            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            performSegue(withIdentifier: "loginSegue", sender: Any?.self)
+            //self.performSegue(withIdentifier: "LoginToList", sender: nil)
         } else {
             print("not logged in")
             // No user is signed in.
         }
+        
     }
     
     @IBAction func signUpPressed(_ sender: Any) {
