@@ -22,5 +22,12 @@ Still have to work on creating some sort of dispatch queue to make sure code is 
 
 Signing out still doesn't work properly.
 
+## Week 2 day 4 & 5
+
+User collections are now properly saved to Firebase using the user e-mail, data is obtained in your collection table view.
+Changed the lay-out and order of view controllers. Worked on displaying other user collections but since logging in and out is still buggy it's hard to test. 
+
+Changed structs so it's easier to get and save data in Firebase without getting errors constantly.
+
 
 
