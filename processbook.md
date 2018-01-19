@@ -14,4 +14,13 @@ Issues that need to be fixed:
 Not all artworks have labels, so different data needs to be obtained so details can be shown for all artworks.
 Need to figure out how to make sure all data is retrieved before other lines of code are executed.
 
+## Week 2 day 3
+
+Changed the data that is requested and it now properly appears in the detail view controller.
+"Add to collection" button works, saving the artwork to the user collection in Firebase.
+Still have to work on creating some sort of dispatch queue to make sure code is executed in correct order so the data is properly transfered from 1 view controller to another.
+
+Signing out still doesn't work properly.
+
+
 
