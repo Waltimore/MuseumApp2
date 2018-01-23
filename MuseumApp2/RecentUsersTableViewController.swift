@@ -7,25 +7,43 @@
 //
 
 import UIKit
+import Firebase
 
 class RecentUsersTableViewController: UITableViewController {
 
+    var userID = Auth.auth().currentUser?.email as String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        startObserving(user: userID!)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
+    var likedUsers: [String] = []
+    
+    func startObserving(user: String) {
+        
+        let ref = Database.database().reference(withPath: (user.makeFirebaseString())).child("liked")
+        ref.observe(.value, with: { snapshot in
+            
+            for item in snapshot.children {
+                self.likedUsers.append(item as! String)
+            }
+            //self.userCollection = collectionArt
+            self.tableView.reloadData()
+        })
+        
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -39,13 +57,20 @@ class RecentUsersTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RecentUserCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "savedUserCell", for: indexPath)
 
-        // Configure the cell...
+        configure(cell: cell, forItemAt: indexPath)
 
         return cell
     }
     
+    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        if likedUsers.count == 0 {
+            cell.textLabel?.text = "Deze gebruiker bestaat niet of heeft nog geen collectie."
+        } else {
+            cell.textLabel?.text = likedUsers[indexPath.row]
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -13,39 +13,59 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if collectionSegue == true {
+            getImage()
+        }
         updateUI()
-        // Do any additional setup after loading the view.
     }
     
-    let userID = Auth.auth().currentUser?.email as! String
+    var collectionSegue: Bool!
+    var userID: String!
     
     @IBAction func addPressed(_ sender: Any) {
-            print(userID)
-
         let ref = Database.database().reference(withPath: userID.makeFirebaseString())
         let childRef = ref.child("collection")
         let savedArtwork = childRef.child((artWork.title?.makeFirebaseString())!)
         savedArtwork.setValue(artWork.toAnyObject())
+        let URL = savedArtwork.child("imageURL")
+        URL.setValue(imageURL)
     }
     
     @IBOutlet weak var artImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     var artWork: ArtObject!
     var imageURL: String!
     
+    func getImage() {
+        let ref = Database.database().reference(withPath: userID.makeFirebaseString()).child("collection").child((artWork.title?.makeFirebaseString())!)
+    
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            
+            if !snapshot.exists() { return }
+            
+            print(snapshot) 
+            
+            let imageURL = snapshot.childSnapshot(forPath: "imageURL").value
+            if imageURL != nil {
+                self.load_image(urlString: imageURL as! String)
+            }
+        })
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func updateUI() {
         if artWork != nil {
             nameLabel.text = artWork.title
             artistLabel.text = artWork.principalMaker
-            descriptionLabel.text = artWork.description
+            descriptionTextView.text = artWork.description
             if imageURL != nil {
                 load_image(urlString: imageURL)
             }
@@ -54,8 +74,7 @@ class DetailViewController: UIViewController {
     
     func load_image(urlString:String)
     {
-        
-        var imgURL: NSURL = NSURL(string: urlString)!
+        let imgURL: NSURL = NSURL(string: urlString)!
         let request: NSURLRequest = NSURLRequest(url: imgURL as URL)
         NSURLConnection.sendAsynchronousRequest(
             request as URLRequest, queue: OperationQueue.main,
@@ -66,16 +85,5 @@ class DetailViewController: UIViewController {
         })
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }
 

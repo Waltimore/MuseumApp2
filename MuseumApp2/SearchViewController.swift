@@ -32,20 +32,21 @@ class SearchViewController: UIViewController {
         let url = URL(string:urlString)!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
-            //print(error as Any)
             do {
                 if let data = data {
                 let artWorks = try jsonDecoder.decode(SearchResults.self, from: data)
                     //print(artWorks)
                     self.searchResults = artWorks.artObjects
+                    
+                    DispatchQueue.main.async {
+                         self.performSegue(withIdentifier: "searchSegue", sender: Any?.self)
+                    }
                 }
             } catch {
                 print(error)
             }
         }
         task.resume()
-        self.performSegue(withIdentifier: "searchSegue", sender: Any?.self)
-        //print(self.searchResults)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,16 +56,13 @@ class SearchViewController: UIViewController {
         }
     }
     
-    
-    
     func Search(query: String) -> String {
-        var searchURL = "https://www.rijksmuseum.nl/api/en/collection?q=" + query + "&key=9A0wAsBM&format=json"
+        var searchURL = "https://www.rijksmuseum.nl/api/nl/collection?q=" + query + "&key=9A0wAsBM&format=json"
         return searchURL
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBOutlet weak var searchResultLabel: UILabel!
@@ -73,14 +71,4 @@ class SearchViewController: UIViewController {
         searchResultLabel.text = (self.artWork?.title as! String)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
