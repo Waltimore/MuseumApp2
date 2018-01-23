@@ -29,5 +29,18 @@ Changed the lay-out and order of view controllers. Worked on displaying other us
 
 Changed structs so it's easier to get and save data in Firebase without getting errors constantly.
 
+## Week 3 day 1 & 2
+
+Forgot to push yesterday.
+
+Changed the interface.
+
+Fixed most issues which led to empty table views because the json data wasn't finished loading yet by using DispatchQueue. Also fixed the logging in/signing out issues by adding a listener checking for authentication status.
+
+Looking up other users now properly works and being able to save collections made by other users also works, only thing left there is to properly create the table view that displays these which is then connected to the rest of the app.
+
+Cleaned up part of the "Search" part of the code by combining some view controllers which were only doing slightly different things.
+
+
 
 
