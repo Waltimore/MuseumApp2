@@ -33,10 +33,7 @@ The rijksmuseum website has a similar concept (called Rijks Studio) which also a
 The hardest part will be implementing a way for users to access, interact and share collections with other users, and properly saving this into a database. 
 
 
-
-
-
-
+[![BCH compliance](https://bettercodehub.com/edge/badge/Waltimore/MuseumApp2?branch=master)](https://bettercodehub.com/)
 
 
 
