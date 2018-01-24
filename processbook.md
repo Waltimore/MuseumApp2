@@ -41,6 +41,14 @@ Looking up other users now properly works and being able to save collections mad
 
 Cleaned up part of the "Search" part of the code by combining some view controllers which were only doing slightly different things.
 
+## Week 3 day 3
+
+Tried fixing the structure of my repository and files but ended up completely messing everything up, then spent most of today trying to fix that. 
+Most of the files are now in appropriate folders.
+
+Tableview that displays liked users now correctly displays these and properly communicates with Firebase.
+
+
 
 
 
