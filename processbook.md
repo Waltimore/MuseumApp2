@@ -48,6 +48,14 @@ Most of the files are now in appropriate folders.
 
 Tableview that displays liked users now correctly displays these and properly communicates with Firebase.
 
+## Week 3 day 4 & 5
+
+Added a way to give a name to your collections and changed the Firebase data structure because of it. Added new segue's to allow users to choose which collection to add to.
+added some pictures that can be used for the interface. Fixed a lot of bugs with displaying data in the table views.
+
+## Week 4 day 1
+
+Fixed issues that lead to the app crashing in certain circumstances and made the interface more intuitive.
 
 
 
