@@ -18,8 +18,9 @@ class SearchViewController: UIViewController {
 
     }
     @IBAction func searchPressed(_ sender: Any) {
-        var userSearchInput = searchTextField.text
-        var searchURL = Search(query: userSearchInput!)
+        let userSearchInput = searchTextField.text
+        let searchURL = Search(query: userSearchInput!)
+        print(searchURL)
         retrieve(urlString: searchURL)
     }
     
@@ -57,7 +58,9 @@ class SearchViewController: UIViewController {
     }
     
     func Search(query: String) -> String {
-        var searchURL = "https://www.rijksmuseum.nl/api/nl/collection?q=" + query + "&key=9A0wAsBM&format=json"
+        let trimmedQuery = query.replacingOccurrences(of: " ", with: "%")
+        let searchURL = "https://www.rijksmuseum.nl/api/nl/collection?q=" + trimmedQuery + "&key=9A0wAsBM&format=json"
+        print(searchURL)
         return searchURL
     }
 

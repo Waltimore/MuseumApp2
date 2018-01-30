@@ -14,17 +14,7 @@ class YourCollectionsTableViewController: UITableViewController {
 
     var userID = Auth.auth().currentUser?.email as String!
 
-    @IBAction func signOutPressed(_ sender: Any) {
-        do { try Auth.auth().signOut() } catch { print(error) }
-        if Auth.auth().currentUser != nil {
-            // User is signed in.
-            print("user is signed in")
-        } else {
-            print("not logged in")
-            performSegue(withIdentifier: "logOut", sender: Any?.self)
-            // No user is signed in.
-        }
-    }
+
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBAction func savePressed(_ sender: Any) {
@@ -35,7 +25,7 @@ class YourCollectionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!).child("collection")
+        let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!).child("collection").child(collection.makeFirebaseString())
         if editingStyle == .delete {
             let artWork = ref.child((self.userCollection[indexPath.row].title?.makeFirebaseString())!)
             artWork.removeValue()
@@ -47,17 +37,18 @@ class YourCollectionsTableViewController: UITableViewController {
     }
     
     var userCollection: [ArtObject] = []
-    var otherUser: Bool = false
+    var collection: String!
+    var artWork: ArtObject?
+    var imageURL: String?
     var searchedUser: String?
+    var otherUser: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if otherUser == true {
             startObserving(user: searchedUser!)
-            saveButton.isEnabled = true
         } else {
-        saveButton.isEnabled = false
-        startObserving(user: userID!)
+            startObserving(user: userID!)
         }
     }
     
@@ -65,6 +56,7 @@ class YourCollectionsTableViewController: UITableViewController {
         if segue.identifier == "collectionToDetail" {
             let detailViewController = segue.destination as! DetailViewController
             detailViewController.collectionSegue = true
+            detailViewController.collectionTitle = collection
             if otherUser == true {
                 detailViewController.userID = searchedUser
             } else {
@@ -77,7 +69,8 @@ class YourCollectionsTableViewController: UITableViewController {
     
     func startObserving(user: String) {
         
-        let ref = Database.database().reference(withPath: (user.makeFirebaseString())).child("collection")
+        let ref = Database.database().reference(withPath: (user.makeFirebaseString())).child("collection").child(self.collection.makeFirebaseString())
+        
         ref.observe(.value, with: { snapshot in
         
         var collectionArt: [ArtObject] = []
@@ -94,12 +87,8 @@ class YourCollectionsTableViewController: UITableViewController {
     }
     
     func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-        if userCollection.count == 0 && otherUser == true {
-        cell.textLabel?.text = "Deze gebruiker bestaat niet of heeft nog geen collectie."
-        } else {
-            let artTitle = self.userCollection[indexPath.row].title
-            cell.textLabel?.text = artTitle
-        }
+        let artTitle = self.userCollection[indexPath.row].title
+        cell.textLabel?.text = artTitle
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,9 +100,6 @@ class YourCollectionsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if userCollection.count == 0 && otherUser == true {
-            return 1
-        }
         return userCollection.count
     }
 

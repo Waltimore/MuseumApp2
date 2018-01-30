@@ -173,11 +173,10 @@ struct ArtObject : Codable {
     
     init(snapshot: DataSnapshot) {
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        title = snapshotValue["title"] as! String
-        description = snapshotValue["description"] as! String
-        objectNumber = snapshotValue["objectNumber"] as! String
+        title = snapshotValue["title"] as? String
+        description = snapshotValue["description"] as? String
+        objectNumber = snapshotValue["objectNumber"] as? String
         webImage = snapshotValue["webImage"] as? WebImage
-        principalMaker = snapshotValue["principalMaker"] as! String
+        principalMaker = snapshotValue["principalMaker"] as? String
     }
-
 }

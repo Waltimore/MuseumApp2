@@ -18,10 +18,10 @@ class SearchUsersViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField!
     
-    var user: String?
+    var userID: String?
     
     @IBAction func zoekPressed(_ sender: UIButton) {
-        self.user = searchTextField.text
+        self.userID = searchTextField.text
         performSegue(withIdentifier: "userSearched", sender: Any?.self)
     }
     
@@ -31,9 +31,9 @@ class SearchUsersViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "userSearched" {
-            let collectionTableViewController = segue.destination as! YourCollectionsTableViewController
+            let collectionTableViewController = segue.destination as! CollectionTableViewController
             collectionTableViewController.otherUser = true
-            collectionTableViewController.searchedUser = user
+            collectionTableViewController.searchedUser = userID
         }
     }
 }

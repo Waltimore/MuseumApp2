@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SearchResultTableViewController: UITableViewController {
 
@@ -30,13 +31,23 @@ class SearchResultTableViewController: UITableViewController {
         task.resume()
     }
 
+    var userID = Auth.auth().currentUser?.email as String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultCell", for: indexPath)
-        configure(cell: cell, forItemAt: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultCell", for: indexPath) as! SearchResultTableViewCell
+        if searchResults != nil {
+            let title = self.searchResults[indexPath.row].title
+            let maker = self.searchResults[indexPath.row].principalOrFirstMaker
+            cell.titleTextLabel?.text = title
+            print(maker)
+            cell.makerTextLabel?.text = maker
+        } else {
+            cell.titleTextLabel?.text = "Je zoek opdracht heeft geen resultaten opgeleverd!"
+        }
         
         return cell
     }
@@ -69,12 +80,18 @@ class SearchResultTableViewController: UITableViewController {
     }
     
     func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-        if searchResults != nil {
-        let title = self.searchResults[indexPath.row].title
-        cell.textLabel?.text = title
-        } else {
-            cell.textLabel?.text = "Je zoek opdracht heeft geen resultaten opgeleverd!"
-        }
+//        if searchResults != nil {
+//            let title = self.searchResults[indexPath.row].title
+//            let maker = self.searchResults[indexPath.row].principalOrFirstMaker
+//            cell.titleTextLabel?.text = title
+//            cell.makerTextLabel?.text = maker
+//        } else {
+//            cell.titleTextLabel?.text = "Je zoek opdracht heeft geen resultaten opgeleverd!"
+//        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 230
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -84,11 +101,13 @@ class SearchResultTableViewController: UITableViewController {
         return searchResults.count
     }
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailSegue" {
             let detailViewController = segue.destination as! DetailViewController
             detailViewController.artWork = artWork
+            detailViewController.userID = userID
             detailViewController.imageURL = imageURL
+        }
     }
-}
 }

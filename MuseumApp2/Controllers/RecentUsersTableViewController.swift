@@ -1,5 +1,5 @@
 //
-//  CollectionDetailTableViewController.swift
+//  RecentUsersTableViewController.swift
 //  MuseumApp2
 //
 //  Created by David van der Velden on 12/01/2018.
@@ -7,46 +7,92 @@
 //
 
 import UIKit
+import Firebase
 
-class CollectionDetailTableViewController: UITableViewController {
+class RecentUsersTableViewController: UITableViewController {
 
+    var userID = Auth.auth().currentUser?.email as String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //startObserving(user: userID!)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
+    var likedUsers: [String] = []
+    var likedUser: String!
+    
+    func startObserving(user: String) {
+        
+        let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!).child("liked")
+        
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+           
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                let key = snap.key
+                self.likedUsers.append(key)
+            }
+            self.tableView.reloadData()
+        })
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return likedUsers.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionDetailCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "savedUserCell", for: indexPath)
 
-        // Configure the cell...
+        configure(cell: cell, forItemAt: indexPath)
 
         return cell
     }
     
+    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        if likedUsers.count == 0 {
+            cell.textLabel?.text = "Deze gebruiker bestaat niet of heeft nog geen collectie."
+        } else {
+            cell.textLabel?.text = likedUsers[indexPath.row]
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = tableView.indexPathForSelectedRow!.row
+        self.likedUser = self.likedUsers[index]
+        performSegue(withIdentifier: "likedToCollection", sender: Any?.self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "likedToCollection" {
+            let collectionTableViewController = segue.destination as! CollectionTableViewController
+            collectionTableViewController.otherUser = true
+            collectionTableViewController.searchedUser = self.likedUser
+        }
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.likedUsers = []
+        startObserving(user: userID!)
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -93,3 +139,4 @@ class CollectionDetailTableViewController: UITableViewController {
     */
 
 }
+

@@ -15,6 +15,12 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Auth.auth().currentUser != nil {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "loginSegue", sender: Any?.self)
+            }
+        }
     }
 
     @IBOutlet weak var userNameTextField: UITextField!
@@ -30,15 +36,14 @@ class LoginViewController: UIViewController {
     @IBAction func loginPressed(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: userNameTextField.text!,
                            password: passWordTextField.text!) { (user, error) in
-        }
-        if Auth.auth().currentUser != nil {
-            // User is signed in.
-            print("user is signed in")
-            performSegue(withIdentifier: "loginSegue", sender: Any?.self)
-        } else {
-            print("not logged in")
-            // No user is signed in.
-        }
+                            if Auth.auth().currentUser != nil {
+                                // User is signed in.
+                                print("user is signed in")
+                            DispatchQueue.main.async {
+                                    self.performSegue(withIdentifier: "loginSegue", sender: Any?.self)
+                                }
+                    }
+            }
     }
     
     @IBAction func signUpPressed(_ sender: Any) {
