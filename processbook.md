@@ -55,11 +55,19 @@ added some pictures that can be used for the interface. Fixed a lot of bugs with
 
 ## Week 4 day 1
 
-Fixed issues that lead to the app crashing in certain circumstances and made the interface more intuitive.
+Tried to fix all the issues (which turned out to be a LOT) that lead to the app crashing in certain circumstances. 
+Made the interface more intuitive, programmed the bar buttons to hide/disable in certain circumstances so certain transitions and segues made more sense and it would be less likely to accidentaly sign out for example. 
 
 ## Week 4 day 2 
 
 Made the cells prettier and worked on adding images of artWorks to more view controllers to make the whole app more "pretty" and cool to use, but because of the json data which stores the URL for the image in different places everytime (or sometimes there simply is none) this was harder than expected and lead to me breaking a few things. Now decided to work with a "No image available" picture in the problem cases which fixed most issues. 
+
+## Week 4 day 3
+
+Added a BUNCH of code to fix remaining issues that could possible lead to crashes or no data being shown and made the app prettier and more user-friendly. 
+Added all the background pictures as well as constraints to the view controllers/cells which took me at least 8 hours filled with suicidal thoughts. 
+
+
 
 
 
