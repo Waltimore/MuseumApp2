@@ -13,6 +13,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        descriptionTextView.layer.borderWidth = 2
+        descriptionTextView.layer.borderColor = UIColor.black.cgColor
         createButton.isEnabled = false
         addButton.isEnabled = false
         if collectionSegue == true {
@@ -98,7 +100,8 @@ class DetailViewController: UIViewController {
                                        style: .default) { action in
                                         
                                         let collectionName = alert.textFields![0]
-                                        let ref = Database.database().reference(withPath: (self.userID?.makeFirebaseString())!)
+                                        let loggedUser = Auth.auth().currentUser?.email as String!
+                                        let ref = Database.database().reference(withPath: (loggedUser!.makeFirebaseString()))
                                         let childRef = ref.child("collection")
                                         let childChildRef = childRef.child((collectionName.text?.makeFirebaseString())!)
                                         let savedArtwork = childChildRef.child((self.artWork.title?.makeFirebaseString())!)

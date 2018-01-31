@@ -15,12 +15,15 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if Auth.auth().currentUser != nil {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginSegue", sender: Any?.self)
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     @IBOutlet weak var userNameTextField: UITextField!

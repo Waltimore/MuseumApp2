@@ -12,12 +12,8 @@ import Firebase
 
 class SearchViewController: UIViewController {
     
-    @IBAction func signOutPressed(_ sender: Any) {
-        do { try Auth.auth().signOut() } catch { print(error) }
-        if Auth.auth().currentUser == nil {
-            print("not logged in")
-            performSegue(withIdentifier: "logOut", sender: Any?.self)
-        }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     override func viewDidLoad() {
@@ -26,7 +22,6 @@ class SearchViewController: UIViewController {
     @IBAction func searchPressed(_ sender: Any) {
         let userSearchInput = searchTextField.text
         let searchURL = Search(query: userSearchInput!)
-        print(searchURL)
         retrieve(urlString: searchURL)
     }
     
@@ -72,11 +67,6 @@ class SearchViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    @IBOutlet weak var searchResultLabel: UILabel!
-    
-    func updateUI() {
-        searchResultLabel.text = (self.artWork?.title as! String)
-    }
+
     
 }

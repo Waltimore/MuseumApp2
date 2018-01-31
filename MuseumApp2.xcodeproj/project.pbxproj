@@ -16,6 +16,8 @@
 		9A86ED1E200F9F70004AC7DC /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED1D200F9F70004AC7DC /* StringExtension.swift */; };
 		9A8904CF201F2E3A00464D53 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8904CE201F2E3A00464D53 /* CollectionTableViewController.swift */; };
 		9A8D04D4200CB03300B8B12C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */; };
+		9AA861EC202217CC00C8147F /* BlurTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA861EB202217CC00C8147F /* BlurTabBar.swift */; };
+		9AA861EE2022241500C8147F /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA861ED2022241500C8147F /* CollectionTableViewCell.swift */; };
 		9AA96A19201619AB00B4A487 /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA96A18201619AB00B4A487 /* SearchUsersViewController.swift */; };
 		9AA96A27201B1F6900B4A487 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */; };
 		9AC004E22020703400FF0B39 /* ArtObjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004E12020703400FF0B39 /* ArtObjectPage.swift */; };
@@ -50,6 +52,8 @@
 		9A86ED1D200F9F70004AC7DC /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		9A8904CE201F2E3A00464D53 /* CollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewController.swift; sourceTree = "<group>"; };
 		9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9AA861EB202217CC00C8147F /* BlurTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTabBar.swift; sourceTree = "<group>"; };
+		9AA861ED2022241500C8147F /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		9AA96A18201619AB00B4A487 /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
 		9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		9AC004E12020703400FF0B39 /* ArtObjectPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtObjectPage.swift; path = ../../../../../.Trash/ArtObjectPage.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				9AED4FE22008AB8700A1556D /* RecentUsersTableViewController.swift */,
 				9AED4FDC2004BB7B00A1556D /* SearchViewController.swift */,
 				9AED4FE62008AC0600A1556D /* YourCollectionsTableViewController.swift */,
+				9AA861EB202217CC00C8147F /* BlurTabBar.swift */,
 				9A8904CE201F2E3A00464D53 /* CollectionTableViewController.swift */,
 			);
 			path = Controllers;
@@ -119,6 +124,7 @@
 			children = (
 				9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */,
 				9AC004ED20209E2E00FF0B39 /* ArtworkTableViewCell.swift */,
+				9AA861ED2022241500C8147F /* CollectionTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 				9AED4FDF2004BBE100A1556D /* SearchResultTableViewController.swift in Sources */,
 				9AC004E62020706900FF0B39 /* PrincipalMakers.swift in Sources */,
 				9AC004EE20209E2E00FF0B39 /* ArtworkTableViewCell.swift in Sources */,
+				9AA861EE2022241500C8147F /* CollectionTableViewCell.swift in Sources */,
 				9A86ED14200CE57B004AC7DC /* Label.swift in Sources */,
 				9AA96A19201619AB00B4A487 /* SearchUsersViewController.swift in Sources */,
 				9AC004EA202083DE00FF0B39 /* Functions.swift in Sources */,
@@ -322,6 +329,7 @@
 				9A8904CF201F2E3A00464D53 /* CollectionTableViewController.swift in Sources */,
 				9AA96A27201B1F6900B4A487 /* SearchResultTableViewCell.swift in Sources */,
 				9AED4FEB2008AC7400A1556D /* DetailViewController.swift in Sources */,
+				9AA861EC202217CC00C8147F /* BlurTabBar.swift in Sources */,
 				9AED4FCB2004B4C400A1556D /* AppDelegate.swift in Sources */,
 				9A86ED1E200F9F70004AC7DC /* StringExtension.swift in Sources */,
 				9AE0AEFD200CB57E00B30137 /* LoginViewController.swift in Sources */,

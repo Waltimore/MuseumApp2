@@ -13,15 +13,12 @@ class SearchUsersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
-    @IBAction func signOutPressed(_ sender: Any) {
-        do { try Auth.auth().signOut() } catch { print(error) }
-        if Auth.auth().currentUser == nil {
-            performSegue(withIdentifier: "logOut", sender: Any?.self)
-        }
-    }
+
 
     @IBOutlet weak var searchTextField: UITextField!
     

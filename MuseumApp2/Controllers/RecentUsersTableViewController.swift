@@ -13,31 +13,14 @@ class RecentUsersTableViewController: UITableViewController {
 
     var userID = Auth.auth().currentUser?.email as String!
     
-    @IBAction func signOutPressed(_ sender: Any) {
-        do { try Auth.auth().signOut() } catch { print(error) }
-        if Auth.auth().currentUser != nil {
-            // User is signed in.
-            print("user is signed in")
-        } else {
-            print("not logged in")
-            performSegue(withIdentifier: "logOut", sender: Any?.self)
-            // No user is signed in.
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //startObserving(user: userID!)
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.separatorStyle = .none
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "goudenBocht"))
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -70,29 +53,42 @@ class RecentUsersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return likedCollections.count
     }
-
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "savedUserCell", for: indexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!).child("liked").child(likedCollections[indexPath.row].makeFirebaseString())
+        if editingStyle == .delete {
+            ref.removeValue()
+        }
+        self.tableView.reloadData()
+    }
 
-        configure(cell: cell, forItemAt: indexPath)
-
-        return cell
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
-    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "savedUserCell", for: indexPath) as! CollectionTableViewCell
         if likedCollections.count == 0 {
-            cell.textLabel?.text = "Deze gebruiker bestaat niet of heeft nog geen collectie."
+            cell.collectionTitleLabel.text = "Deze gebruiker bestaat niet of heeft nog geen collectie."
         } else {
-            cell.textLabel?.text = likedCollections[indexPath.row]
+            let titleString = NSAttributedString(string: likedCollections[indexPath.row], attributes: [
+                NSAttributedStringKey.foregroundColor : UIColor.white,
+                NSAttributedStringKey.strokeColor : UIColor.black,
+                NSAttributedStringKey.strokeWidth : -1
+                ])
+            cell.collectionTitleLabel.attributedText = titleString
         }
+        cell.backgroundColor = UIColor.darkGray.withAlphaComponent(0.3)
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = tableView.indexPathForSelectedRow!.row
         self.likedCollection = self.likedCollections[index]
         self.pressedUser = self.otherUsers[index]
-        performSegue(withIdentifier: "likedToCollection", sender: Any?.self)
+        if likedCollections.count != 0 {
+            performSegue(withIdentifier: "likedToCollection", sender: Any?.self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

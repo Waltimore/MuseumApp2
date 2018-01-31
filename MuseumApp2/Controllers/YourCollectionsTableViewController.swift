@@ -44,6 +44,7 @@ class YourCollectionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.backgroundView = UIImageView(image: UIImage(named: "goudenBocht"))
         self.title = self.collection
         if otherUser == true {
             saveButton.isEnabled = true
@@ -109,8 +110,19 @@ class YourCollectionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "YourCollectionCell", for: indexPath) as! ArtworkTableViewCell
         
-        cell.titleLabel.text = userCollection[indexPath.row].title
-        cell.makerLabel.text = userCollection[indexPath.row].principalMaker
+        let title = NSAttributedString(string: userCollection[indexPath.row].title!, attributes: [
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.strokeWidth : -1,
+            ])
+        let maker = NSAttributedString(string: userCollection[indexPath.row].principalMaker!, attributes: [
+            NSAttributedStringKey.foregroundColor : UIColor.white,
+            NSAttributedStringKey.strokeColor : UIColor.black,
+            NSAttributedStringKey.strokeWidth : -1,
+            ])
+        
+        cell.titleLabel.attributedText = title
+        cell.makerLabel.attributedText = maker
         var userName: String!
         if otherUser == true {
             userName = searchedUser
@@ -126,8 +138,7 @@ class YourCollectionsTableViewController: UITableViewController {
                 let imageURL = snapshot.childSnapshot(forPath: "imageURL").value as! String
                 if imageURL != "Geen Afbeelding" {
                 DispatchQueue.main.async {
-                    if imageURL != nil {
-                        let imgURL: NSURL = NSURL(string: (imageURL as! String))!
+                        let imgURL: NSURL = NSURL(string: (imageURL as String))!
                         let request: NSURLRequest = NSURLRequest(url: imgURL as URL)
                         NSURLConnection.sendAsynchronousRequest(
                             request as URLRequest, queue: OperationQueue.main,
@@ -136,7 +147,6 @@ class YourCollectionsTableViewController: UITableViewController {
                                     cell.artImage.image = UIImage(data: data!)
                                 }
                         })
-                    }
                 }
                 } else {
                     cell.artImage.image = UIImage(named: "geenAfb")
