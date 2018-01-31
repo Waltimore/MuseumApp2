@@ -13,6 +13,18 @@ class RecentUsersTableViewController: UITableViewController {
 
     var userID = Auth.auth().currentUser?.email as String!
     
+    @IBAction func signOutPressed(_ sender: Any) {
+        do { try Auth.auth().signOut() } catch { print(error) }
+        if Auth.auth().currentUser != nil {
+            // User is signed in.
+            print("user is signed in")
+        } else {
+            print("not logged in")
+            performSegue(withIdentifier: "logOut", sender: Any?.self)
+            // No user is signed in.
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //startObserving(user: userID!)
@@ -29,8 +41,10 @@ class RecentUsersTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    var likedUsers: [String] = []
-    var likedUser: String!
+    var likedCollections: [String] = []
+    var likedCollection: String!
+    var otherUsers: [String] = []
+    var pressedUser: String!
     
     func startObserving(user: String) {
         
@@ -41,20 +55,20 @@ class RecentUsersTableViewController: UITableViewController {
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
                 let key = snap.key
-                self.likedUsers.append(key)
+                let otherUser = snap.value
+                self.likedCollections.append(key)
+                self.otherUsers.append(otherUser as! String)
             }
             self.tableView.reloadData()
         })
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return likedUsers.count
+        return likedCollections.count
     }
 
     
@@ -67,30 +81,32 @@ class RecentUsersTableViewController: UITableViewController {
     }
     
     func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-        if likedUsers.count == 0 {
+        if likedCollections.count == 0 {
             cell.textLabel?.text = "Deze gebruiker bestaat niet of heeft nog geen collectie."
         } else {
-            cell.textLabel?.text = likedUsers[indexPath.row]
+            cell.textLabel?.text = likedCollections[indexPath.row]
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let index = tableView.indexPathForSelectedRow!.row
-        self.likedUser = self.likedUsers[index]
+        self.likedCollection = self.likedCollections[index]
+        self.pressedUser = self.otherUsers[index]
         performSegue(withIdentifier: "likedToCollection", sender: Any?.self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "likedToCollection" {
-            let collectionTableViewController = segue.destination as! CollectionTableViewController
+            let collectionTableViewController = segue.destination as! YourCollectionsTableViewController
             collectionTableViewController.otherUser = true
-            collectionTableViewController.searchedUser = self.likedUser
+            collectionTableViewController.collection = self.likedCollection
+            collectionTableViewController.searchedUser = self.pressedUser
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.likedUsers = []
+        self.likedCollections = []
         startObserving(user: userID!)
     }
     /*

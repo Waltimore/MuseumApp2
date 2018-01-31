@@ -21,25 +21,11 @@ class CollectionTableViewController: UITableViewController {
         } else {
             print("not logged in")
             performSegue(withIdentifier: "logOut", sender: Any?.self)
-            // No user is signed in.
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if otherUser == true {
-            startObserving(user: searchedUser!)
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-            startObserving(user: userID!)
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,8 +82,6 @@ class CollectionTableViewController: UITableViewController {
         })
     }
     
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if chooseCollection == false {
             performSegue(withIdentifier: "collectionToArt", sender: Any?.self)
@@ -108,7 +92,9 @@ class CollectionTableViewController: UITableViewController {
             let savedArtwork = childRef.child((artWork.title?.makeFirebaseString())!)
             savedArtwork.setValue(artWork.toAnyObject())
             let URL = savedArtwork.child("imageURL")
-            URL.setValue(imageURL)
+            if self.imageURL != nil {
+                URL.setValue(self.imageURL)
+            } else { URL.setValue("Geen Afbeelding") }
             performSegue(withIdentifier: "backToDetail", sender: Any?.self)
         }
     }
@@ -132,7 +118,7 @@ class CollectionTableViewController: UITableViewController {
         if otherUser == false {
         startObserving(user: userID!)
         } else {
-            startObserving(user: searchedUser!)
+        startObserving(user: searchedUser!)
         }
     }
     /*

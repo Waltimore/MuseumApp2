@@ -12,23 +12,15 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Dating : Codable {
-	let presentingDate : String?
-	let sortingDate : Int?
-	let period : Int?
+struct SearchResults : Codable {
+	let elapsedMilliseconds : Int?
+	let count : Int?
+	let artObjects : [ArtObjects]?
 
 	enum CodingKeys: String, CodingKey {
 
-		case presentingDate = "presentingDate"
-		case sortingDate = "sortingDate"
-		case period = "period"
+		case elapsedMilliseconds = "elapsedMilliseconds"
+		case count = "count"
+		case artObjects = "artObjects"
 	}
-
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        presentingDate = try values.decodeIfPresent(String.self, forKey: .presentingDate)
-//        sortingDate = try values.decodeIfPresent(Int.self, forKey: .sortingDate)
-//        period = try values.decodeIfPresent(Int.self, forKey: .period)
-//    }
-
 }

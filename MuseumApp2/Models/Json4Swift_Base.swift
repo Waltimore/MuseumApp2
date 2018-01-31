@@ -23,12 +23,4 @@ struct Json4Swift_Base : Codable {
 		case artObject
 		case artObjectPage
 	}
-
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        elapsedMilliseconds = try values.decodeIfPresent(Int.self, forKey: .elapsedMilliseconds)
-//        artObject = try ArtObject(from: decoder)
-//        artObjectPage = try ArtObjectPage(from: decoder)
-//    }
-
 }

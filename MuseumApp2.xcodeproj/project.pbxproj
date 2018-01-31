@@ -8,15 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A86ED08200CE55D004AC7DC /* Json4Swift_Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ECFF200CE42F004AC7DC /* Json4Swift_Base.swift */; };
-		9A86ED09200CE564004AC7DC /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED06200CE505004AC7DC /* Classification.swift */; };
-		9A86ED0A200CE566004AC7DC /* Dating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED05200CE4E6004AC7DC /* Dating.swift */; };
-		9A86ED0B200CE568004AC7DC /* PrincipalMakers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED04200CE4DF004AC7DC /* PrincipalMakers.swift */; };
-		9A86ED0C200CE56A004AC7DC /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED03200CE4D5004AC7DC /* Dimensions.swift */; };
-		9A86ED0D200CE56B004AC7DC /* ArtObjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED02200CE4C8004AC7DC /* ArtObjectPage.swift */; };
-		9A86ED0E200CE570004AC7DC /* AdlibOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED01200CE4BA004AC7DC /* AdlibOverrides.swift */; };
-		9A86ED0F200CE572004AC7DC /* Acquisition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED07200CE512004AC7DC /* Acquisition.swift */; };
 		9A86ED10200CE574004AC7DC /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ECFC200CE423004AC7DC /* WebImage.swift */; };
-		9A86ED11200CE577004AC7DC /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ECFD200CE426004AC7DC /* Links.swift */; };
 		9A86ED13200CE579004AC7DC /* ArtObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED12200CE578004AC7DC /* ArtObject.swift */; };
 		9A86ED14200CE57B004AC7DC /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED00200CE44B004AC7DC /* Label.swift */; };
 		9A86ED1B200DFC76004AC7DC /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A86ED18200DFC75004AC7DC /* SearchResults.swift */; };
@@ -25,18 +17,21 @@
 		9A8904CF201F2E3A00464D53 /* CollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8904CE201F2E3A00464D53 /* CollectionTableViewController.swift */; };
 		9A8D04D4200CB03300B8B12C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */; };
 		9AA96A19201619AB00B4A487 /* SearchUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA96A18201619AB00B4A487 /* SearchUsersViewController.swift */; };
-		9AA96A1B2018825E00B4A487 /* LikedUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA96A1A2018825E00B4A487 /* LikedUser.swift */; };
 		9AA96A27201B1F6900B4A487 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */; };
+		9AC004E22020703400FF0B39 /* ArtObjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004E12020703400FF0B39 /* ArtObjectPage.swift */; };
+		9AC004E42020706300FF0B39 /* AdlibOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004E32020706300FF0B39 /* AdlibOverrides.swift */; };
+		9AC004E62020706900FF0B39 /* PrincipalMakers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004E52020706900FF0B39 /* PrincipalMakers.swift */; };
+		9AC004E82020707B00FF0B39 /* Acquisition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004E72020707B00FF0B39 /* Acquisition.swift */; };
+		9AC004EA202083DE00FF0B39 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004E9202083DE00FF0B39 /* Functions.swift */; };
+		9AC004EE20209E2E00FF0B39 /* ArtworkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC004ED20209E2E00FF0B39 /* ArtworkTableViewCell.swift */; };
 		9AE0AEFD200CB57E00B30137 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE0AEFC200CB57E00B30137 /* LoginViewController.swift */; };
 		9AED4FCB2004B4C400A1556D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FCA2004B4C400A1556D /* AppDelegate.swift */; };
-		9AED4FCD2004B4C400A1556D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FCC2004B4C400A1556D /* ViewController.swift */; };
 		9AED4FD02004B4C400A1556D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AED4FCE2004B4C400A1556D /* Main.storyboard */; };
 		9AED4FD22004B4C400A1556D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AED4FD12004B4C400A1556D /* Assets.xcassets */; };
 		9AED4FD52004B4C400A1556D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AED4FD32004B4C400A1556D /* LaunchScreen.storyboard */; };
 		9AED4FDD2004BB7B00A1556D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FDC2004BB7B00A1556D /* SearchViewController.swift */; };
 		9AED4FDF2004BBE100A1556D /* SearchResultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FDE2004BBE100A1556D /* SearchResultTableViewController.swift */; };
 		9AED4FE32008AB8700A1556D /* RecentUsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FE22008AB8700A1556D /* RecentUsersTableViewController.swift */; };
-		9AED4FE52008ABE500A1556D /* OtherUsersCollectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FE42008ABE500A1556D /* OtherUsersCollectionTableViewController.swift */; };
 		9AED4FE72008AC0600A1556D /* YourCollectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FE62008AC0600A1556D /* YourCollectionsTableViewController.swift */; };
 		9AED4FEB2008AC7400A1556D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AED4FEA2008AC7400A1556D /* DetailViewController.swift */; };
 		B478923156CED010053904E4 /* Pods_MuseumApp2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2EA361AA74F3AD51B6857F /* Pods_MuseumApp2.framework */; };
@@ -47,16 +42,8 @@
 		4F2EA361AA74F3AD51B6857F /* Pods_MuseumApp2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseumApp2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E40CE9015DDE9DB814DEF6A /* Pods-MuseumApp2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumApp2.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumApp2/Pods-MuseumApp2.release.xcconfig"; sourceTree = "<group>"; };
 		9A86ECFC200CE423004AC7DC /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
-		9A86ECFD200CE426004AC7DC /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		9A86ECFF200CE42F004AC7DC /* Json4Swift_Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Json4Swift_Base.swift; sourceTree = "<group>"; };
 		9A86ED00200CE44B004AC7DC /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
-		9A86ED01200CE4BA004AC7DC /* AdlibOverrides.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdlibOverrides.swift; sourceTree = "<group>"; };
-		9A86ED02200CE4C8004AC7DC /* ArtObjectPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObjectPage.swift; sourceTree = "<group>"; };
-		9A86ED03200CE4D5004AC7DC /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
-		9A86ED04200CE4DF004AC7DC /* PrincipalMakers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalMakers.swift; sourceTree = "<group>"; };
-		9A86ED05200CE4E6004AC7DC /* Dating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dating.swift; sourceTree = "<group>"; };
-		9A86ED06200CE505004AC7DC /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
-		9A86ED07200CE512004AC7DC /* Acquisition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Acquisition.swift; sourceTree = "<group>"; };
 		9A86ED12200CE578004AC7DC /* ArtObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtObject.swift; sourceTree = "<group>"; };
 		9A86ED18200DFC75004AC7DC /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchResults.swift; path = ../../../../Downloads/codegen_5a5dc4b29bcd5/SearchResults.swift; sourceTree = "<group>"; };
 		9A86ED19200DFC76004AC7DC /* ArtObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtObjects.swift; path = ../../../../Downloads/codegen_5a5dc4b29bcd5/ArtObjects.swift; sourceTree = "<group>"; };
@@ -64,12 +51,16 @@
 		9A8904CE201F2E3A00464D53 /* CollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewController.swift; sourceTree = "<group>"; };
 		9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9AA96A18201619AB00B4A487 /* SearchUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersViewController.swift; sourceTree = "<group>"; };
-		9AA96A1A2018825E00B4A487 /* LikedUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUser.swift; sourceTree = "<group>"; };
 		9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		9AC004E12020703400FF0B39 /* ArtObjectPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArtObjectPage.swift; path = ../../../../../.Trash/ArtObjectPage.swift; sourceTree = "<group>"; };
+		9AC004E32020706300FF0B39 /* AdlibOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdlibOverrides.swift; path = ../../../../../.Trash/AdlibOverrides.swift; sourceTree = "<group>"; };
+		9AC004E52020706900FF0B39 /* PrincipalMakers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrincipalMakers.swift; path = ../../../../../.Trash/PrincipalMakers.swift; sourceTree = "<group>"; };
+		9AC004E72020707B00FF0B39 /* Acquisition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Acquisition.swift; path = ../../../../../.Trash/Acquisition.swift; sourceTree = "<group>"; };
+		9AC004E9202083DE00FF0B39 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		9AC004ED20209E2E00FF0B39 /* ArtworkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkTableViewCell.swift; sourceTree = "<group>"; };
 		9AE0AEFC200CB57E00B30137 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9AED4FC72004B4C400A1556D /* MuseumApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AED4FCA2004B4C400A1556D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9AED4FCC2004B4C400A1556D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9AED4FCF2004B4C400A1556D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AED4FD12004B4C400A1556D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9AED4FD42004B4C400A1556D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,7 +68,6 @@
 		9AED4FDC2004BB7B00A1556D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		9AED4FDE2004BBE100A1556D /* SearchResultTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewController.swift; sourceTree = "<group>"; };
 		9AED4FE22008AB8700A1556D /* RecentUsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentUsersTableViewController.swift; sourceTree = "<group>"; };
-		9AED4FE42008ABE500A1556D /* OtherUsersCollectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUsersCollectionTableViewController.swift; sourceTree = "<group>"; };
 		9AED4FE62008AC0600A1556D /* YourCollectionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourCollectionsTableViewController.swift; sourceTree = "<group>"; };
 		9AED4FEA2008AC7400A1556D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,17 +88,13 @@
 			isa = PBXGroup;
 			children = (
 				9A86ED12200CE578004AC7DC /* ArtObject.swift */,
+				9AC004E32020706300FF0B39 /* AdlibOverrides.swift */,
 				9A86ED00200CE44B004AC7DC /* Label.swift */,
-				9A86ECFD200CE426004AC7DC /* Links.swift */,
 				9A86ECFC200CE423004AC7DC /* WebImage.swift */,
-				9AA96A1A2018825E00B4A487 /* LikedUser.swift */,
-				9A86ED02200CE4C8004AC7DC /* ArtObjectPage.swift */,
-				9A86ED05200CE4E6004AC7DC /* Dating.swift */,
-				9A86ED03200CE4D5004AC7DC /* Dimensions.swift */,
-				9A86ED06200CE505004AC7DC /* Classification.swift */,
-				9A86ED07200CE512004AC7DC /* Acquisition.swift */,
-				9A86ED04200CE4DF004AC7DC /* PrincipalMakers.swift */,
 				9A86ECFF200CE42F004AC7DC /* Json4Swift_Base.swift */,
+				9AC004E52020706900FF0B39 /* PrincipalMakers.swift */,
+				9AC004E12020703400FF0B39 /* ArtObjectPage.swift */,
+				9AC004E72020707B00FF0B39 /* Acquisition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -116,7 +102,6 @@
 		9AA96A232018D51100B4A487 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */,
 				9AE0AEFC200CB57E00B30137 /* LoginViewController.swift */,
 				9AED4FEA2008AC7400A1556D /* DetailViewController.swift */,
 				9AA96A18201619AB00B4A487 /* SearchUsersViewController.swift */,
@@ -124,7 +109,6 @@
 				9AED4FE22008AB8700A1556D /* RecentUsersTableViewController.swift */,
 				9AED4FDC2004BB7B00A1556D /* SearchViewController.swift */,
 				9AED4FE62008AC0600A1556D /* YourCollectionsTableViewController.swift */,
-				9AED4FE42008ABE500A1556D /* OtherUsersCollectionTableViewController.swift */,
 				9A8904CE201F2E3A00464D53 /* CollectionTableViewController.swift */,
 			);
 			path = Controllers;
@@ -133,6 +117,8 @@
 		9AA96A28201B20F600B4A487 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9AA96A26201B1F6900B4A487 /* SearchResultTableViewCell.swift */,
+				9AC004ED20209E2E00FF0B39 /* ArtworkTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -164,14 +150,13 @@
 				9AED4FCA2004B4C400A1556D /* AppDelegate.swift */,
 				9A86ED19200DFC76004AC7DC /* ArtObjects.swift */,
 				9A86ED18200DFC75004AC7DC /* SearchResults.swift */,
-				9A86ED01200CE4BA004AC7DC /* AdlibOverrides.swift */,
-				9AED4FCC2004B4C400A1556D /* ViewController.swift */,
 				9AED4FCE2004B4C400A1556D /* Main.storyboard */,
 				9A86ED1D200F9F70004AC7DC /* StringExtension.swift */,
 				9AED4FD12004B4C400A1556D /* Assets.xcassets */,
 				9A8D04D3200CB03300B8B12C /* GoogleService-Info.plist */,
 				9AED4FD32004B4C400A1556D /* LaunchScreen.storyboard */,
 				9AED4FD62004B4C400A1556D /* Info.plist */,
+				9AC004E9202083DE00FF0B39 /* Functions.swift */,
 			);
 			path = MuseumApp2;
 			sourceTree = "<group>";
@@ -319,30 +304,25 @@
 			files = (
 				9AED4FE72008AC0600A1556D /* YourCollectionsTableViewController.swift in Sources */,
 				9A86ED10200CE574004AC7DC /* WebImage.swift in Sources */,
-				9A86ED0A200CE566004AC7DC /* Dating.swift in Sources */,
-				9A86ED11200CE577004AC7DC /* Links.swift in Sources */,
-				9A86ED0F200CE572004AC7DC /* Acquisition.swift in Sources */,
 				9A86ED13200CE579004AC7DC /* ArtObject.swift in Sources */,
-				9AA96A1B2018825E00B4A487 /* LikedUser.swift in Sources */,
 				9A86ED1B200DFC76004AC7DC /* SearchResults.swift in Sources */,
 				9A86ED1C200DFC76004AC7DC /* ArtObjects.swift in Sources */,
-				9A86ED0C200CE56A004AC7DC /* Dimensions.swift in Sources */,
+				9AC004E82020707B00FF0B39 /* Acquisition.swift in Sources */,
 				9AED4FE32008AB8700A1556D /* RecentUsersTableViewController.swift in Sources */,
 				9AED4FDF2004BBE100A1556D /* SearchResultTableViewController.swift in Sources */,
+				9AC004E62020706900FF0B39 /* PrincipalMakers.swift in Sources */,
+				9AC004EE20209E2E00FF0B39 /* ArtworkTableViewCell.swift in Sources */,
 				9A86ED14200CE57B004AC7DC /* Label.swift in Sources */,
 				9AA96A19201619AB00B4A487 /* SearchUsersViewController.swift in Sources */,
+				9AC004EA202083DE00FF0B39 /* Functions.swift in Sources */,
 				9A86ED08200CE55D004AC7DC /* Json4Swift_Base.swift in Sources */,
-				9AED4FE52008ABE500A1556D /* OtherUsersCollectionTableViewController.swift in Sources */,
+				9AC004E42020706300FF0B39 /* AdlibOverrides.swift in Sources */,
 				9AED4FDD2004BB7B00A1556D /* SearchViewController.swift in Sources */,
+				9AC004E22020703400FF0B39 /* ArtObjectPage.swift in Sources */,
 				9A8904CF201F2E3A00464D53 /* CollectionTableViewController.swift in Sources */,
 				9AA96A27201B1F6900B4A487 /* SearchResultTableViewCell.swift in Sources */,
-				9A86ED09200CE564004AC7DC /* Classification.swift in Sources */,
 				9AED4FEB2008AC7400A1556D /* DetailViewController.swift in Sources */,
-				9AED4FCD2004B4C400A1556D /* ViewController.swift in Sources */,
 				9AED4FCB2004B4C400A1556D /* AppDelegate.swift in Sources */,
-				9A86ED0E200CE570004AC7DC /* AdlibOverrides.swift in Sources */,
-				9A86ED0B200CE568004AC7DC /* PrincipalMakers.swift in Sources */,
-				9A86ED0D200CE56B004AC7DC /* ArtObjectPage.swift in Sources */,
 				9A86ED1E200F9F70004AC7DC /* StringExtension.swift in Sources */,
 				9AE0AEFD200CB57E00B30137 /* LoginViewController.swift in Sources */,
 			);

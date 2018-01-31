@@ -138,14 +138,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourCollectionCell" rowHeight="150" id="4cn-u9-vh0">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="YourCollectionCell" rowHeight="150" id="4cn-u9-vh0" customClass="ArtworkTableViewCell" customModule="MuseumApp2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4cn-u9-vh0" id="xhh-59-0Ko">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJ4-xo-pQ3">
+                                            <rect key="frame" x="-90" y="-139" width="533" height="524"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUf-cR-6dN">
+                                            <rect key="frame" x="16" y="11" width="343" height="63"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daK-Gj-OWA">
+                                            <rect key="frame" x="16" y="94" width="343" height="45"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="0.8963807909" blue="0.77583885180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="artImage" destination="BJ4-xo-pQ3" id="NmK-si-Xhi"/>
+                                    <outlet property="makerLabel" destination="daK-Gj-OWA" id="Mh3-y1-YfC"/>
+                                    <outlet property="titleLabel" destination="XUf-cR-6dN" id="gpS-9E-G4n"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -169,7 +194,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L9a-Ik-VAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="8VH-LP-zul" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3460" y="376"/>
+            <point key="canvasLocation" x="3460" y="375.56221889055473"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="PUK-kH-ZmA">
@@ -231,12 +256,20 @@
                             <outlet property="delegate" destination="zhh-d0-qKb" id="Wd9-ZI-TwQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Opgeslagen Collecties" id="Xds-Du-2gw"/>
+                    <navigationItem key="navigationItem" title="Opgeslagen Collecties" id="Xds-Du-2gw">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="RyQ-zI-hW2">
+                            <connections>
+                                <action selector="signOutPressed:" destination="zhh-d0-qKb" id="aZl-tc-IGo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="hUV-TE-eZo" kind="show" identifier="likedToCollection" id="MaV-Km-cAm"/>
+                        <segue destination="hUV-TE-eZo" kind="show" identifier="likedToCollection" id="5se-gI-f6k"/>
+                        <segue destination="lab-Sc-85T" kind="unwind" identifier="logOut" unwindAction="unwindToLoginWithSegue:" id="JRI-e5-XtV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Xz-US-J6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="lab-Sc-85T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1692" y="-1043"/>
         </scene>
@@ -313,13 +346,21 @@
                         <color key="backgroundColor" red="0.30116056159999999" green="0.82702663649999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="cZY-Hd-Brj"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MOW-zy-Xc3"/>
+                    <navigationItem key="navigationItem" id="MOW-zy-Xc3">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="WGB-7z-S2Z">
+                            <connections>
+                                <action selector="signOutPressed:" destination="IwP-7p-WsS" id="DGL-EB-JnJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchTextField" destination="aeA-hR-3VW" id="HtW-dJ-jp9"/>
                         <segue destination="w70-dw-Mqc" kind="show" identifier="searchSegue" id="B18-E3-eXt"/>
+                        <segue destination="nHd-75-dE5" kind="unwind" identifier="logOut" unwindAction="unwindToLoginWithSegue:" id="kZN-sl-EOG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RSK-OG-PlO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="nHd-75-dE5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2540" y="1145.577211394303"/>
         </scene>
@@ -383,19 +424,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7KI-1R-yYQ">
-                                <rect key="frame" x="16" y="85" width="343" height="228"/>
+                                <rect key="frame" x="16" y="41" width="343" height="228"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="228" id="v8j-1e-nHT"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name artwork" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lm9-JU-SeG">
-                                <rect key="frame" x="16" y="323" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="279" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name artist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duz-3O-ZLv">
-                                <rect key="frame" x="16" y="365" width="343" height="31"/>
+                                <rect key="frame" x="16" y="321" width="343" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="rq5-th-zZa"/>
                                 </constraints>
@@ -443,8 +484,10 @@
                         <viewLayoutGuide key="safeArea" id="gwE-Ll-dXU"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="HL9-04-G2q" id="H4Y-3K-xrc"/>
                         <outlet property="artImage" destination="7KI-1R-yYQ" id="g6U-wc-Wem"/>
                         <outlet property="artistLabel" destination="duz-3O-ZLv" id="rO4-go-2pS"/>
+                        <outlet property="createButton" destination="413-qZ-7j8" id="WDk-AL-nYw"/>
                         <outlet property="descriptionTextView" destination="UAS-YB-6C7" id="Iyc-Kd-Bh3"/>
                         <outlet property="nameLabel" destination="Lm9-JU-SeG" id="X2I-1O-odj"/>
                         <segue destination="Kmf-Fr-I4L" kind="show" identifier="chooseCollection" id="ZVb-xl-BJd"/>
@@ -462,44 +505,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="molenpolder" translatesAutoresizingMaskIntoConstraints="NO" id="mZ0-ai-1mR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="molenpolder" translatesAutoresizingMaskIntoConstraints="NO" id="mZ0-ai-1mR">
                                 <rect key="frame" x="-22" y="0.0" width="397" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ftn-jX-CEd">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ftn-jX-CEd">
                                 <rect key="frame" x="42" y="277" width="291" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n14-NJ-OoH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n14-NJ-OoH">
                                 <rect key="frame" x="157" y="336" width="61" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Zoek"/>
                                 <connections>
                                     <action selector="zoekPressed:" destination="Kf3-vd-a5P" eventType="touchUpInside" id="DZk-hR-fjf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Zoek andere gebruikers!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWO-De-IbX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoek andere gebruikers!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWO-De-IbX">
                                 <rect key="frame" x="42" y="121" width="284" height="186"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="38"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.30116056159999999" green="0.82702663649999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ftn-jX-CEd" firstAttribute="centerX" secondItem="Xdf-zQ-x0y" secondAttribute="centerX" id="9ic-We-Wxr"/>
+                            <constraint firstAttribute="trailing" secondItem="mZ0-ai-1mR" secondAttribute="trailing" id="AaG-KS-u6S"/>
+                            <constraint firstItem="ftn-jX-CEd" firstAttribute="bottom" secondItem="SWO-De-IbX" secondAttribute="bottom" id="BzC-iJ-U42"/>
+                            <constraint firstItem="SWO-De-IbX" firstAttribute="leading" secondItem="CvO-rX-hZ6" secondAttribute="leading" constant="42" id="GVb-ea-iyV"/>
+                            <constraint firstItem="SWO-De-IbX" firstAttribute="top" secondItem="CvO-rX-hZ6" secondAttribute="top" constant="57" id="IKC-pm-Tvs"/>
+                            <constraint firstItem="CvO-rX-hZ6" firstAttribute="bottom" secondItem="n14-NJ-OoH" secondAttribute="bottom" constant="233" id="KHZ-7T-qN6"/>
+                            <constraint firstItem="n14-NJ-OoH" firstAttribute="top" secondItem="ftn-jX-CEd" secondAttribute="bottom" constant="29" id="QVI-m2-bUX"/>
+                            <constraint firstItem="ftn-jX-CEd" firstAttribute="top" secondItem="CvO-rX-hZ6" secondAttribute="top" constant="213" id="VzI-Tj-FG4"/>
+                            <constraint firstItem="ftn-jX-CEd" firstAttribute="centerX" secondItem="n14-NJ-OoH" secondAttribute="centerX" id="X1d-tz-VTs"/>
+                            <constraint firstItem="mZ0-ai-1mR" firstAttribute="top" secondItem="Xdf-zQ-x0y" secondAttribute="top" id="YqV-RY-MUv"/>
+                            <constraint firstItem="n14-NJ-OoH" firstAttribute="leading" secondItem="CvO-rX-hZ6" secondAttribute="leading" constant="157" id="awR-QX-WbW"/>
+                            <constraint firstItem="mZ0-ai-1mR" firstAttribute="leading" secondItem="Xdf-zQ-x0y" secondAttribute="leadingMargin" constant="-38" id="ble-Ob-8v9"/>
+                            <constraint firstAttribute="bottom" secondItem="mZ0-ai-1mR" secondAttribute="bottom" id="dUR-v8-X4r"/>
+                            <constraint firstItem="CvO-rX-hZ6" firstAttribute="trailing" secondItem="SWO-De-IbX" secondAttribute="trailing" constant="49" id="foy-L7-PWa"/>
+                            <constraint firstItem="SWO-De-IbX" firstAttribute="leading" secondItem="ftn-jX-CEd" secondAttribute="leading" id="tEf-UB-yKd"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="CvO-rX-hZ6"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ahk-aY-Esz"/>
+                    <navigationItem key="navigationItem" id="ahk-aY-Esz">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="8Js-YE-rns">
+                            <connections>
+                                <action selector="signOutPressed:" destination="Kf3-vd-a5P" id="DLX-ql-iUX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchTextField" destination="ftn-jX-CEd" id="uZx-S4-9MK"/>
                         <segue destination="Kmf-Fr-I4L" kind="show" identifier="userSearched" id="BXL-si-vMJ"/>
+                        <segue destination="t2c-rq-3Lk" kind="unwind" identifier="logOut" unwindAction="unwindToLoginWithSegue:" id="Jb1-Xk-tsN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5n2-gx-2EM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="t2c-rq-3Lk" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2617" y="-340"/>
         </scene>
@@ -533,10 +597,8 @@
                                 <action selector="signOutPressed:" destination="Kmf-Fr-I4L" id="FER-Xi-hSb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ddk-oI-HXt"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="saveButton" destination="ddk-oI-HXt" id="89z-1N-hTX"/>
                         <segue destination="hUV-TE-eZo" kind="show" identifier="collectionToArt" id="ZQN-Ct-X0X"/>
                         <segue destination="Qez-U6-OAx" kind="unwind" identifier="backToDetail" unwindAction="backToDetailWithSegue:" id="5X2-xj-fcm"/>
                         <segue destination="Qez-U6-OAx" kind="unwind" identifier="logOut" unwindAction="unwindToLoginWithSegue:" id="46B-nP-vdS"/>
@@ -545,7 +607,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLJ-g6-8ni" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Qez-U6-OAx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2599" y="375"/>
+            <point key="canvasLocation" x="2617" y="375"/>
         </scene>
     </scenes>
     <resources>
@@ -554,7 +616,7 @@
         <image name="rijksbuilding2" width="425" height="698"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BXL-si-vMJ"/>
+        <segue reference="ZVb-xl-BJd"/>
         <segue reference="rhi-hc-xyY"/>
         <segue reference="ZQN-Ct-X0X"/>
     </inferredMetricsTieBreakers>

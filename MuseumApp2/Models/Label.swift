@@ -28,13 +28,4 @@ struct Label : Codable {
 		case date = "date"
 	}
 
-//    init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        title = try values.decodeIfPresent(String.self, forKey: .title)
-//        makerLine = try values.decodeIfPresent(String.self, forKey: .makerLine)
-//        description = try values.decodeIfPresent(String.self, forKey: .description)
-//        notes = try values.decodeIfPresent(String.self, forKey: .notes)
-//        date = try values.decodeIfPresent(String.self, forKey: .date)
-//    }
-
 }

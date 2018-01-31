@@ -8,14 +8,20 @@
 
 import UIKit
 import Foundation
+import Firebase
 
 class SearchViewController: UIViewController {
+    
+    @IBAction func signOutPressed(_ sender: Any) {
+        do { try Auth.auth().signOut() } catch { print(error) }
+        if Auth.auth().currentUser == nil {
+            print("not logged in")
+            performSegue(withIdentifier: "logOut", sender: Any?.self)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //updateUI()
-        // Do any additional setup after loading the view.
-
     }
     @IBAction func searchPressed(_ sender: Any) {
         let userSearchInput = searchTextField.text
@@ -36,7 +42,6 @@ class SearchViewController: UIViewController {
             do {
                 if let data = data {
                 let artWorks = try jsonDecoder.decode(SearchResults.self, from: data)
-                    //print(artWorks)
                     self.searchResults = artWorks.artObjects
                     
                     DispatchQueue.main.async {

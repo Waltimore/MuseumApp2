@@ -14,19 +14,18 @@ class YourCollectionsTableViewController: UITableViewController {
 
     var userID = Auth.auth().currentUser?.email as String!
 
-
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     @IBAction func savePressed(_ sender: Any) {
         let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!)
         let childRef = ref.child("liked")
-        let savedUser = childRef.child((searchedUser?.makeFirebaseString())!)
+        let savedUser = childRef.child((collection.makeFirebaseString()))
         savedUser.setValue(searchedUser?.makeFirebaseString())
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!).child("collection").child(collection.makeFirebaseString())
-        if editingStyle == .delete {
+        if editingStyle == .delete && otherUser == false {
             let artWork = ref.child((self.userCollection[indexPath.row].title?.makeFirebaseString())!)
             artWork.removeValue()
         }
@@ -39,16 +38,19 @@ class YourCollectionsTableViewController: UITableViewController {
     var userCollection: [ArtObject] = []
     var collection: String!
     var artWork: ArtObject?
-    var imageURL: String?
+    var imageURL: String!
     var searchedUser: String?
-    var otherUser: Bool?
+    var otherUser: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = self.collection
         if otherUser == true {
+            saveButton.isEnabled = true
             startObserving(user: searchedUser!)
         } else {
             startObserving(user: userID!)
+            saveButton.isEnabled = false
         }
     }
     
@@ -67,6 +69,9 @@ class YourCollectionsTableViewController: UITableViewController {
         }
     }
     
+
+    
+    
     func startObserving(user: String) {
         
         let ref = Database.database().reference(withPath: (user.makeFirebaseString())).child("collection").child(self.collection.makeFirebaseString())
@@ -74,7 +79,6 @@ class YourCollectionsTableViewController: UITableViewController {
         ref.observe(.value, with: { snapshot in
         
         var collectionArt: [ArtObject] = []
-        
         
         for item in snapshot.children {
         let artWork = ArtObject(snapshot: item as! DataSnapshot)
@@ -84,11 +88,6 @@ class YourCollectionsTableViewController: UITableViewController {
         self.tableView.reloadData()
         })
         
-    }
-    
-    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-        let artTitle = self.userCollection[indexPath.row].title
-        cell.textLabel?.text = artTitle
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,16 +102,50 @@ class YourCollectionsTableViewController: UITableViewController {
         return userCollection.count
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "YourCollectionCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "YourCollectionCell", for: indexPath) as! ArtworkTableViewCell
+        
+        cell.titleLabel.text = userCollection[indexPath.row].title
+        cell.makerLabel.text = userCollection[indexPath.row].principalMaker
+        var userName: String!
+        if otherUser == true {
+            userName = searchedUser
+        } else {
+            userName = userID
+        }
+        let ref = Database.database().reference(withPath: (userName.makeFirebaseString())).child("collection").child(collection.makeFirebaseString()).child((userCollection[indexPath.row].title!.makeFirebaseString()))
+            
+            ref.observeSingleEvent(of: .value, with: { snapshot in
+                
+                if !snapshot.exists() { return }
+                
+                let imageURL = snapshot.childSnapshot(forPath: "imageURL").value as! String
+                if imageURL != "Geen Afbeelding" {
+                DispatchQueue.main.async {
+                    if imageURL != nil {
+                        let imgURL: NSURL = NSURL(string: (imageURL as! String))!
+                        let request: NSURLRequest = NSURLRequest(url: imgURL as URL)
+                        NSURLConnection.sendAsynchronousRequest(
+                            request as URLRequest, queue: OperationQueue.main,
+                            completionHandler: {(response: URLResponse?,data: Data?,error: Error?) -> Void in
+                                if error == nil {
+                                    cell.artImage.image = UIImage(data: data!)
+                                }
+                        })
+                    }
+                }
+                } else {
+                    cell.artImage.image = UIImage(named: "geenAfb")
+                }
+            })
+         return cell
+        }
 
-        configure(cell: cell, forItemAt: indexPath)
-
-        return cell
     }
-
-}
 
 
 

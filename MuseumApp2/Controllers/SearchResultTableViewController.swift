@@ -43,7 +43,6 @@ class SearchResultTableViewController: UITableViewController {
             let title = self.searchResults[indexPath.row].title
             let maker = self.searchResults[indexPath.row].principalOrFirstMaker
             cell.titleTextLabel?.text = title
-            print(maker)
             cell.makerTextLabel?.text = maker
         } else {
             cell.titleTextLabel?.text = "Je zoek opdracht heeft geen resultaten opgeleverd!"
@@ -77,17 +76,6 @@ class SearchResultTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    
-    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-//        if searchResults != nil {
-//            let title = self.searchResults[indexPath.row].title
-//            let maker = self.searchResults[indexPath.row].principalOrFirstMaker
-//            cell.titleTextLabel?.text = title
-//            cell.makerTextLabel?.text = maker
-//        } else {
-//            cell.titleTextLabel?.text = "Je zoek opdracht heeft geen resultaten opgeleverd!"
-//        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

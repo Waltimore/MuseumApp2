@@ -13,7 +13,8 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createButton.isEnabled = false
+        addButton.isEnabled = false
         if collectionSegue == true {
             getImage()
         }
@@ -42,6 +43,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var createButton: UIButton!
     
     var artWork: ArtObject!
     var imageURL: String!
@@ -54,15 +57,17 @@ class DetailViewController: UIViewController {
             
             if !snapshot.exists() { return }
             
-            print(snapshot) 
-            
-            let imageURL = snapshot.childSnapshot(forPath: "imageURL").value
-            if imageURL != nil {
-                self.load_image(urlString: imageURL as! String)
+            let imageURL = snapshot.childSnapshot(forPath: "imageURL").value as! String
+            self.imageURL = imageURL as String
+            self.createButton.isEnabled = true
+            self.addButton.isEnabled = true
+            if imageURL != "Geen Afbeelding" {
+                self.load_image(urlString: imageURL as String)
+            } else {
+                self.artImage.image = UIImage(named: "geenAfb")
             }
         })
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -75,7 +80,11 @@ class DetailViewController: UIViewController {
             descriptionTextView.text = artWork.description
             if imageURL != nil {
                 load_image(urlString: imageURL)
+            } else {
+                self.artImage.image = UIImage(named: "geenAfb")
             }
+            addButton.isEnabled = true
+            createButton.isEnabled = true
         }
     }
     
@@ -89,14 +98,15 @@ class DetailViewController: UIViewController {
                                        style: .default) { action in
                                         
                                         let collectionName = alert.textFields![0]
-                                        
                                         let ref = Database.database().reference(withPath: (self.userID?.makeFirebaseString())!)
                                         let childRef = ref.child("collection")
                                         let childChildRef = childRef.child((collectionName.text?.makeFirebaseString())!)
                                         let savedArtwork = childChildRef.child((self.artWork.title?.makeFirebaseString())!)
                                         savedArtwork.setValue(self.artWork.toAnyObject())
                                         let URL = savedArtwork.child("imageURL")
-                                        URL.setValue(self.imageURL)
+                                        if self.imageURL != nil {
+                                            URL.setValue(self.imageURL)
+                                        } else { URL.setValue("Geen Afbeelding") }
                                         }
 
         let cancelAction = UIAlertAction(title: "Cancel",
@@ -125,7 +135,6 @@ class DetailViewController: UIViewController {
                     self.artImage.image = UIImage(data: data!)
                 }
         })
-        
     }
 }
 

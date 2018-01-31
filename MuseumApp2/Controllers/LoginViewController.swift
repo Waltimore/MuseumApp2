@@ -37,21 +37,26 @@ class LoginViewController: UIViewController {
         Auth.auth().signIn(withEmail: userNameTextField.text!,
                            password: passWordTextField.text!) { (user, error) in
                             if Auth.auth().currentUser != nil {
-                                // User is signed in.
-                                print("user is signed in")
-                            DispatchQueue.main.async {
+                                DispatchQueue.main.async {
                                     self.performSegue(withIdentifier: "loginSegue", sender: Any?.self)
                                 }
+                            } else {
+                                let alert = UIAlertController(title: "Deze combinatie van wachtwoord en gebruikersnaam klopt niet!",
+                                                              message: "",
+                                                              preferredStyle: .alert)
+                                let cancelAction = UIAlertAction(title: "Sluit", style: .default)
+                                alert.addAction(cancelAction)
+                                self.present(alert, animated: true, completion: nil)
                     }
             }
     }
     
     @IBAction func signUpPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Register",
-                                      message: "Register",
+        let alert = UIAlertController(title: "Registreren",
+                                      message: "Registeren",
                                       preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: "Save",
+        let saveAction = UIAlertAction(title: "Registreer",
                                        style: .default) { action in
                                         
                                         let emailField = alert.textFields![0]
@@ -66,16 +71,16 @@ class LoginViewController: UIViewController {
                                         }
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel",
+        let cancelAction = UIAlertAction(title: "Sluit",
                                          style: .default)
         
         alert.addTextField { textEmail in
-            textEmail.placeholder = "Enter your email"
+            textEmail.placeholder = "email adres"
         }
         
         alert.addTextField { textPassword in
             textPassword.isSecureTextEntry = true
-            textPassword.placeholder = "Enter your password"
+            textPassword.placeholder = "wachtwoord"
         }
         
         alert.addAction(saveAction)
