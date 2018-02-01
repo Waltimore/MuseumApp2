@@ -59,7 +59,7 @@ class DetailViewController: UIViewController {
             self.createButton.isEnabled = true
             self.addButton.isEnabled = true
             if imageURL != "Geen Afbeelding" {
-                self.load_image(urlString: imageURL as String)
+                self.loadImage(urlString: imageURL as String)
             } else {
                 self.artImage.image = UIImage(named: "geenAfb")
             }
@@ -77,7 +77,7 @@ class DetailViewController: UIViewController {
                 descriptionTextView.text = "Dit kunstwerk heeft geen beschrijving."
             }
             if imageURL != nil {
-                load_image(urlString: imageURL)
+                loadImage(urlString: imageURL)
             } else {
                 self.artImage.image = UIImage(named: "geenAfb")
             }
@@ -127,7 +127,7 @@ class DetailViewController: UIViewController {
     }
     
     // Uses the image URL to get the image and load it into the imageView.
-    func load_image(urlString:String)
+    func loadImage(urlString:String)
     {
         let imgURL: NSURL = NSURL(string: urlString)!
         let request: NSURLRequest = NSURLRequest(url: imgURL as URL)
