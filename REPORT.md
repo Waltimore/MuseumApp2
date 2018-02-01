@@ -5,22 +5,22 @@ create collections with these art works as well as look at collections made by o
 
 Once the user has logged on, the app takes them to a tab bar controller, consisting of 4 tabs. 
 
-Screenshot -> ( tab bar )
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/tabBar.png" width="200"/>
 
 2 of these "tabs" contain view controllers, one in which the user can search for other users through the Firebase database,
 and one where the user can search through the collection of the Rijksmuseum.
 
-screen( search view)
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/zoekSS.png" width="150"/>
 
 The 2 other tabs are table views, one in which the "likes" (collections of other users) are displayed, and one in which the 
 users own collections are displayed.
 
-screen (table views)
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/collectieSS.png" width="150"/>
 
 In each table view the cells are pressable and will perform a segue leading to more detail about either the collection or the
 specific artwork. 
 
-screen( detail example)
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/detailSS.png" width="150"/>
 
 A fresh user will not have any collections or likes, and the table views will thus be empty initially since they retrieve their
 data from Firebase. 
@@ -28,7 +28,11 @@ In the search view controller, a URL is created with the user input in the text 
 URL is then used to obtain information from the Rijksmuseum API via a GET request which will return search results in a JSON 
 format. This data is decoded using a json decoder and put into the structs that mimic the data format of this data.
 
-Screen (structs in which data is put) Screen (rijks api data)
+Structs:
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/structsSS.png" width="300"/> 
+
+example API data: (not the whole thing)
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/APISS.png" width="800"/>
 
 After the search button is pressed, the user will be taken to the search result table view controller, which puts the these
 results (obtained as described above) in individual, pressable cells. Pressing these cells will prepare a segue that takes 
@@ -38,11 +42,11 @@ objectNumber (which is passed to it from the previous view controller).
 In the detail view controller, the user has the option to add the artwork to a consisting collection, or create a new one. 
 This is both done via Firebase.
 
-Screen (Firebase database)
+<img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/FirebaseSS.png" width="500"/>
 
 Once a user has created a collection, it will be viewable in the first tab (named "Collections"). In this tab view controller
 data for the individual cells is obtained from firebase through the startObserving function. 
--> screen (start observing)
+
 This Collection table view is also used to display the collections made by other users if the user gets there via the 
 SearchOtherUsers view controller. Keeping track of which collections to show and what to "Observe" is done through
 the otherUser boolean which is changed based on the segue.
