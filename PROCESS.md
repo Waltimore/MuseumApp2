@@ -67,6 +67,11 @@ Made the cells prettier and worked on adding images of artWorks to more view con
 Added a BUNCH of code to fix remaining issues that could possible lead to crashes or no data being shown and made the app prettier and more user-friendly. 
 Added all the background pictures as well as constraints to the view controllers/cells which took me at least 8 hours filled with suicidal thoughts. 
 
+## Week 4 day 4
+
+Commented the code, put everything in order tweaked some minor things, renamed variables and view controllers and created more folders. 
+
+
 
 
 
