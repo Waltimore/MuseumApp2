@@ -10,15 +10,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar
 
 */
+//
+//  WebImage.swift
+//  MuseumApp2
+//
+//  Struct used to save ArtObject data obtained via the Rijksmuseum API.
+//
 
 import Foundation
+
 struct WebImage : Codable {
 	let url : String?
 
 	enum CodingKeys: String, CodingKey {
 		case url = "url"
 	}
-
-
-
 }

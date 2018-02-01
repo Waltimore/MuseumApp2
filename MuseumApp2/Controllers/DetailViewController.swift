@@ -2,6 +2,8 @@
 //  DetailViewController.swift
 //  MuseumApp2
 //
+//  View controller that displays detailed information including a photo about artworks.
+//
 //  Created by David van der Velden on 12/01/2018.
 //  Copyright © 2018 David van der Velden. All rights reserved.
 //
@@ -11,36 +13,6 @@ import Firebase
 
 class DetailViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        descriptionTextView.layer.borderWidth = 2
-        descriptionTextView.layer.borderColor = UIColor.black.cgColor
-        createButton.isEnabled = false
-        addButton.isEnabled = false
-        if collectionSegue == true {
-            getImage()
-        }
-        updateUI()
-    }
-    
-    var collectionSegue: Bool!
-    var userID: String!
-    
-    @IBAction func addPressed(_ sender: Any) {
-        performSegue(withIdentifier: "chooseCollection", sender: Any?.self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chooseCollection" {
-            let CollectionTableViewController = segue.destination as! CollectionTableViewController
-            CollectionTableViewController.artWork = artWork
-            CollectionTableViewController.imageURL = imageURL
-            CollectionTableViewController.chooseCollection = true
-        }
-    }
-
-    @IBAction func backToDetail(segue: UIStoryboardSegue) { }
-    
     @IBOutlet weak var artImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
@@ -48,10 +20,33 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var createButton: UIButton!
     
+    var collectionSegue: Bool!
+    var userID: String!
     var artWork: ArtObject!
     var imageURL: String!
     var collectionTitle: String!
     
+    @IBAction func backToDetail(segue: UIStoryboardSegue) { }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        descriptionTextView.layer.borderWidth = 2
+        descriptionTextView.layer.borderColor = UIColor.black.cgColor
+        // Disable buttons until all data is properly loaded
+        createButton.isEnabled = false
+        addButton.isEnabled = false
+        // If Collection segue was performed, get image URL from Firebase database via getImage() function.
+        if collectionSegue == true {
+            getImage()
+        }
+        updateUI()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    // Gets image URL from the firebase database and loads the image into artImage.
     func getImage() {
         let ref = Database.database().reference(withPath: (userID?.makeFirebaseString())!).child("collection").child(collectionTitle.makeFirebaseString()).child((artWork.title?.makeFirebaseString())!)
     
@@ -71,15 +66,16 @@ class DetailViewController: UIViewController {
         })
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
+    // Puts the information of the artWork into the text fields and image views.
     func updateUI() {
         if artWork != nil {
             nameLabel.text = artWork.title
             artistLabel.text = artWork.principalMaker
-            descriptionTextView.text = artWork.description
+            if artWork.description != nil {
+                descriptionTextView.text = artWork.description
+            } else {
+                descriptionTextView.text = "Dit kunstwerk heeft geen beschrijving."
+            }
             if imageURL != nil {
                 load_image(urlString: imageURL)
             } else {
@@ -90,7 +86,12 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // Sends the app to the collections view controller where the user can pick in which collection he/she wants to store the artWork.
+    @IBAction func addPressed(_ sender: Any) {
+        performSegue(withIdentifier: "chooseCollection", sender: Any?.self)
+    }
     
+    // Opens a UIAlertController which allows user to create a new collection in the firebase database in which the current artWork will be saved.
     @IBAction func createPressed(_ sender: Any) {
         let alert = UIAlertController(title: "Maak nieuwe collectie",
                                           message: "Maak nieuwe collectie",
@@ -125,8 +126,7 @@ class DetailViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-
-    
+    // Uses the image URL to get the image and load it into the imageView.
     func load_image(urlString:String)
     {
         let imgURL: NSURL = NSURL(string: urlString)!
@@ -138,6 +138,15 @@ class DetailViewController: UIViewController {
                     self.artImage.image = UIImage(data: data!)
                 }
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chooseCollection" {
+            let collectionsTableViewController = segue.destination as! CollectionsTableViewController
+            collectionsTableViewController.artWork = artWork
+            collectionsTableViewController.imageURL = imageURL
+            collectionsTableViewController.chooseCollection = true
+        }
     }
 }
 

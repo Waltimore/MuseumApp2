@@ -11,6 +11,13 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 */
 
+//
+//  Json4Swift_Base.swift
+//  MuseumApp2
+//
+//  Struct used to save ArtObject data obtained via the Rijksmuseum API.
+//
+
 import Foundation
 struct Json4Swift_Base : Codable {
 	let elapsedMilliseconds : Int?
