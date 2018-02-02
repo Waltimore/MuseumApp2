@@ -2,6 +2,8 @@
 
 The Rijksmuseum is the first among the top museums in the world to have almost their entire collection available online, inlcuding high definition images. For many art and history fans, being able to access this collection on their phones and tablets in the form of a user-friendly app would be a very welcome addition to their lives. Since the Rijksmuseum collection is so large, the app allows users to make their own collections as well as look at and rate the collections made by other users.
 
+Video demonstration: https://vimeo.com/253942044
+
 This app allows users to create accounts, search through the art collection of the Rijksmuseum and gives them the possibility to make their own collections as well as look at collections made by other users.
 
 <img src="https://github.com/Waltimore/MuseumApp2/blob/master/doc/loginScreen.png" width="300"/>
